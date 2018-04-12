@@ -17,7 +17,7 @@ import DeleteButton from 'components/DeleteButton';
 export default class ProjectListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
-
+    console.log(this.props);
     // Put together the content of the repository
     const content = (
       <Wrapper>
@@ -25,9 +25,9 @@ export default class ProjectListItem extends React.PureComponent { // eslint-dis
           {item.name}
         </ProjectLink>
         <DeleteButton
-          id="delete"
-          type="onSubmit"
+          project-id={item.id}
           children="Delete"
+          onClick={this.props.onDeleteClick}
         />
       </Wrapper>
     );
@@ -40,4 +40,5 @@ export default class ProjectListItem extends React.PureComponent { // eslint-dis
 }
 ProjectListItem.propTypes = {
   item: PropTypes.object,
+  onDeleteClick: PropTypes.func,
 };

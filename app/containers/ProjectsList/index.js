@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import List from 'components/List';
-import ListItem from 'components/ListItem';
 import ProjectListItem from '../../components/ProjectListItem';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
@@ -14,35 +12,47 @@ import injectSaga from 'utils/injectSaga';
 
 import {makeSelectProjects} from "./selectors";
 import {loadProjects} from "./actions";
+import {deleteProject} from "./actions";
 
-export class ProjectsList extends React.Component {
+export class ProjectsList extends React.PureComponent {
 
   componentDidMount() {
     this.props.onPageLoad();
   }
 
   render() {
-    const { projects } = this.props;
+    const { projects, onDelete } = this.props;
+    let content = (<div></div>);
 
     if (projects) {
-      return <List items={projects} component={ProjectListItem}/>;
+      content = (
+        <div>
+          {projects.map(item => (
+            <ProjectListItem key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id)}/>
+          ))}
+        </div>
+      );
     }
-
-    const ErrorComponent = () => (
-      <ListItem item={'Something went wrong, please try again!'}/>
-    );
-    return <List component={ErrorComponent}/>;
+    console.log(content);
+    return content;
   }
 }
 
 ProjectsList.propTypes = {
-  projects: PropTypes.any,
+  projects: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.bool
+  ]),
+  onDelete: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
     onPageLoad: (evt) => {
       dispatch(loadProjects());
+    },
+    onDelete: (projectID) => {
+      dispatch(deleteProject(projectID));
     },
   };
 }

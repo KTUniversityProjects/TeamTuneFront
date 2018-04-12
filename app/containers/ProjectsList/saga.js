@@ -7,7 +7,6 @@ import {call, put, takeLatest} from 'redux-saga/effects';
 import request from 'utils/request';
 import {SESSIONID} from "../App/constants";
 import {LOAD_PROJECTS} from "./constants";
-import {LOAD_PROJECTS2} from "./constants";
 import {loadProjects2} from "./actions";
 
 /**

@@ -18,6 +18,17 @@ export function loadProjects() {
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
+export function deleteProject(id) {
+  return {
+    type: DELETE_PROJECT,
+    projectID: id
+  };
+}
+/**
+ * Load the repositories, this action starts the request saga
+ *
+ * @return {object} An action object with a type of LOAD_REPOS
+ */
 export function loadProjects2(projects) {
   return {
     type: LOAD_PROJECTS2,
