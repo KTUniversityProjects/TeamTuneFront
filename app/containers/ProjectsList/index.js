@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import List from 'components/List';
 import ListItem from 'components/ListItem';
-import ProjectListItem from 'components/ProjectListItem';
+import ProjectListItem from '../../components/ProjectListItem';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import reducer from './reducer';
@@ -11,9 +11,9 @@ import saga from './saga';
 import {compose} from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import {LOAD_PROJECTS} from './constants';
 
 import {makeSelectProjects} from "./selectors";
+import {loadProjects} from "./actions";
 
 export class ProjectsList extends React.Component {
 
@@ -42,9 +42,7 @@ ProjectsList.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     onPageLoad: (evt) => {
-      dispatch({
-        type: LOAD_PROJECTS
-      });
+      dispatch(loadProjects());
     },
   };
 }
