@@ -18,11 +18,49 @@ import saga from './saga';
 
 export class Main extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
+
+
   render() {
+    var styles = {
+    bmBurgerButton: {
+    position: 'fixed',
+    width: '20px',
+    height: '17px',
+    top: '8px',
+    left: '7px',
+  },
+  bmBurgerBars: {
+    background: '#ffffff'
+  },
+  bmCrossButton: {
+    height: '24px',
+    width: '24px'
+  },
+  bmCross: {
+    background: '#bdc3c7'
+  },
+  bmMenu: {
+    background: '#373a47',
+    padding: '2.5em 1.5em 0',
+    fontSize: '1.15em'
+  },
+  bmMorphShape: {
+    fill: '#373a47'
+  },
+  bmItemList: {
+    color: '#b8b7ad',
+    padding: '0.8em'
+  },
+  bmOverlay: {
+    background: 'rgba(0, 0, 0, 0.3)'
+  }
+}
     return (
-      <Menu width={ '20%' }>
+      <div>
+      <Menu width={ '200px' } styles={styles} >
       <ProjectsList/>
       </Menu>
+      </div>
     );
   }
 }
