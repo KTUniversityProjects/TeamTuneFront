@@ -15,6 +15,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
+import Sidebar from 'react-sidebar';
 
 import HomePage from 'containers/HomePage/Loadable';
 import SignUpPage from 'containers/SignUpPage/Loadable';
@@ -22,7 +23,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import AboutPage from 'containers/AboutPage/Loadable';
 import Main from 'containers/Main/Loadable';
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+import ProjectsList from 'containers/ProjectsList';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -32,13 +33,13 @@ const AppWrapper = styled.div`
 `;
 
 export default function App() {
-  return (
+  return (    
     <AppWrapper>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="TeamTune"
+        defaultTitle="TeamTune Project"
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="TeamTune application" />
       </Helmet>
       <Header />
       <Switch>
@@ -48,7 +49,6 @@ export default function App() {
         <Route exact path="/main" component={Main} />
         <Route path="" component={NotFoundPage} />
       </Switch>
-      <Footer />
     </AppWrapper>
   );
 }

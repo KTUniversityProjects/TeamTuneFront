@@ -20,6 +20,9 @@ import {
   SIGNUP_SUCCESS,
 } from './constants';
 
+import {SESSIONID,USERID
+} from '../App/constants';
+
 // The initial state of the App
 const initialState = fromJS({
   username: '',
@@ -32,11 +35,6 @@ function signupReducer(state = initialState, action) {
 switch (action.type) {
     //Login request success
     case SIGNUP_SUCCESS:
-      console.log(action.response);
-      if(action.response.code == 0)
-      {
-        sessionStorage.setItem('sessionID', action.response.data);
-      }
       return state;
 
 

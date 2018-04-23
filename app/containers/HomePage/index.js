@@ -67,7 +67,7 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
                 />
                 <Link
                   to="/signup"
-                  children="asdasdsa"
+                  children="Sign up"
                 />
             </Form>
           </CenteredSection>

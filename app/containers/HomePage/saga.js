@@ -7,7 +7,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import {makeSelectPassword, makeSelectUsername} from './selectors';
 import {LOGIN} from "./constants";
-import {SESSIONID} from "../App/constants";
+import {SESSIONID,USERID} from "../App/constants";
 import { requestError} from "./actions";
 import { push } from 'react-router-redux';
 
@@ -27,7 +27,9 @@ export function* loginRequest() {
 
     if(response.code == 0)
     {
-      sessionStorage.setItem(SESSIONID, response.data);
+      sessionStorage.setItem(SESSIONID, response.data.id);
+      sessionStorage.setItem(USERID, response.data.user);
+      
       yield put(push('/main'));
     }
     else

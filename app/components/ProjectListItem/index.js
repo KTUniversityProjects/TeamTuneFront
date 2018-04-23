@@ -17,13 +17,13 @@ import DeleteButton from 'components/DeleteButton';
 export default class ProjectListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
-    console.log(this.props);
     // Put together the content of the repository
     const content = (
       <Wrapper>
         <ProjectLink href={`/project/${item.id}`}>
           {item.name}
         </ProjectLink>
+        
         <DeleteButton
           project-id={item.id}
           children="Delete"

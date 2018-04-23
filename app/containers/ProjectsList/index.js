@@ -10,9 +10,10 @@ import {compose} from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
+
 import {makeSelectProjects} from "./selectors";
 import {loadProjects} from "./actions";
-import {deleteProject} from "./actions";
+import {deleteProjectRequest} from "./actions";
 
 export class ProjectsList extends React.PureComponent {
 
@@ -33,7 +34,6 @@ export class ProjectsList extends React.PureComponent {
         </div>
       );
     }
-    console.log(content);
     return content;
   }
 }
@@ -52,7 +52,7 @@ export function mapDispatchToProps(dispatch) {
       dispatch(loadProjects());
     },
     onDelete: (projectID) => {
-      dispatch(deleteProject(projectID));
+      dispatch(deleteProjectRequest(projectID));
     },
   };
 }

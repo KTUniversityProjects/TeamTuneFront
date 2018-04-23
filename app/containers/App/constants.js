@@ -11,3 +11,4 @@
 
 export const DEFAULT_LOCALE = 'en';
 export const SESSIONID = 'sessionID';
+export const USERID = 'userID';
