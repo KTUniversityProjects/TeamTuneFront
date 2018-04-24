@@ -1,17 +1,14 @@
-import { css } from 'styled-components';
-
-const Styles = css'
-&:bm-burger-button {
+.bm-burger-button {
   position: fixed;
-  width: 36px;
-  height: 30px;
-  left: 36px;
-  top: 36px;
+  width: 20px;
+  height: 17px;
+  left: 7px;
+  top: 8px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: #ffffff;
 }
 
 /* Position and sizing of clickable cross button */
@@ -40,13 +37,9 @@ const Styles = css'
 /* Wrapper for item list */
 .bm-item-list {
   color: #b8b7ad;
-  padding: 0.8em;
 }
 
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
-';
-
-export default Styles;

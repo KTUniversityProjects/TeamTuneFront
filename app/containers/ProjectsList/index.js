@@ -1,19 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ProjectListItem from '../../components/ProjectListItem';
 import {connect} from 'react-redux';
-import {createStructuredSelector} from 'reselect';
 import reducer from './reducer';
 import saga from './saga';
 import {compose} from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-
+import {createStructuredSelector} from 'reselect';
 import {makeSelectProjects} from "./selectors";
-import {loadProjects} from "./actions";
+import { makeSelectName } from './selectors';
+import { makeSelectDescription } from './selectors';
+
+import {loadProjectsRequest} from "./actions";
 import {deleteProjectRequest} from "./actions";
+import { changeName} from './actions';
+import { changeDescription } from './actions';
+import { addProjectRequest } from './actions';
+
+import ProjectListItem from '../../components/ProjectListItem';
+import Form from 'components/Form';
+import Button from 'components/Button';
+import Input from 'components/Input';
 
 export class ProjectsList extends React.PureComponent {
 
@@ -24,14 +33,63 @@ export class ProjectsList extends React.PureComponent {
   render() {
     const { projects, onDelete } = this.props;
     let content = (<div></div>);
-
     if (projects) {
       content = (
         <div>
           {projects.map(item => (
             <ProjectListItem key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id)}/>
           ))}
+          <div>
+          <Form>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Project name"
+                    value={this.props.name}
+                    onChange={this.props.onChangeName}
+                  /><br />
+                  <Input
+                    id="description"
+                    type="text"
+                    placeholder="Project description"
+                    value={this.props.description}
+                    onChange={this.props.onChangeDescription}
+                  /><br />
+                  <Button
+                    id="add"
+                    type="submit"
+                    children="Add new project"
+                    onClick={this.props.onSubmitForm}
+                  />
+              </Form>
+          </div>
         </div>
+      );
+    }
+    if (!projects) {
+      content = (
+          <Form>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Project name"
+                    value={this.props.name}
+                    onChange={this.props.onChangeName}
+                  /><br />
+                  <Input
+                    id="description"
+                    type="text"
+                    placeholder="Project description"
+                    value={this.props.description}
+                    onChange={this.props.onChangeDescription}
+                  /><br />
+                  <Button
+                    id="add"
+                    type="submit"
+                    children="Add new project"
+                    onClick={this.props.onSubmitForm}
+                  />
+              </Form>
       );
     }
     return content;
@@ -41,24 +99,37 @@ export class ProjectsList extends React.PureComponent {
 ProjectsList.propTypes = {
   projects: PropTypes.oneOfType([
     PropTypes.array,
-    PropTypes.bool
+    PropTypes.bool,
   ]),
   onDelete: PropTypes.func,
+  onSubmitForm: PropTypes.func,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  onChangeName: PropTypes.func,
+  onChangeDescription: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
     onPageLoad: (evt) => {
-      dispatch(loadProjects());
+      dispatch(loadProjectsRequest());
     },
     onDelete: (projectID) => {
       dispatch(deleteProjectRequest(projectID));
+    },
+    onChangeName: (evt) => dispatch(changeName(evt.target.value)),
+    onChangeDescription: (evt) => dispatch(changeDescription(evt.target.value)),
+    onSubmitForm: (evt) => {
+      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+      dispatch(addProjectRequest());
     },
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  projects: makeSelectProjects()
+  projects: makeSelectProjects(),
+  name: makeSelectName(),
+  description: makeSelectDescription(),
 });
 
 

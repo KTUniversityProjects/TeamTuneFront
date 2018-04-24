@@ -1,8 +1,11 @@
 import {
+    LOAD_PROJECTS_REQUEST,
     LOAD_PROJECTS,
-    LOAD_PROJECTS2,
     DELETE_PROJECT,
     DELETE_PROJECT_REQUEST,
+    CHANGE_NAME,
+    CHANGE_DESCRIPTION,
+    ADD_PROJECT_REQUEST,
 } from './constants';
 
 /**
@@ -10,9 +13,23 @@ import {
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
-export function loadProjects() {
+export function changeName(name) {
   return {
-    type: LOAD_PROJECTS
+    type: CHANGE_NAME,
+    name
+  };
+}
+
+export function changeDescription(name) {
+  return {
+    type: CHANGE_DESCRIPTION,
+    name
+  };
+}
+
+export function loadProjectsRequest() {
+  return {
+    type: LOAD_PROJECTS_REQUEST
   };
 }
 /**
@@ -33,14 +50,27 @@ export function deleteProject(id) {
     projectID: id
   };
 }
+
+export function addProjectRequest() {
+  return {
+    type: ADD_PROJECT_REQUEST,
+  };
+}
+
+export function addProject(projectObj) {
+  return {
+    type: ADD_PROJECT,
+    project: projectObj
+  };
+}
 /**
  * Load the repositories, this action starts the request saga
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
-export function loadProjects2(projects) {
+export function loadProjects(projects) {
   return {
-    type: LOAD_PROJECTS2,
+    type: LOAD_PROJECTS,
     projects
   };
 }
