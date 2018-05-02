@@ -9,4 +9,9 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
- export const LOAD_PROJECTS = 'boilerplate/App/DELETE_ITEM';
+export const LOAD_PROJECTS_REQUEST = 'boilerplate/App/LOAD_PROJECTS_REQUEST';
+export const LOAD_PROJECTS = 'boilerplate/App/LOAD_PROJECTS';
+export const DELETE_PROJECT_REQUEST = 'boilerplate/App/DELETE_PROJECT_REQUEST';
+export const CHANGE_NAME = 'boilerplate/App/CHANGE_NAME';
+export const CHANGE_DESCRIPTION = 'boilerplate/App/CHANGE_DESCRIPTION';
+export const ADD_PROJECT_REQUEST = 'boilerplate/App/ADD_PROJECT_REQUEST';

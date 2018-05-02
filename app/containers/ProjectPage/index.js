@@ -16,7 +16,7 @@ import './Styles.css';
 
 import saga from './saga';
 
-export class Main extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class ProjectPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
 
 
@@ -26,13 +26,14 @@ export class Main extends React.PureComponent { // eslint-disable-line react/pre
       <Menu width={ '200px' }>
       <ProjectsList/>
       </Menu>
+      HUJNIAAA
       </div>
     );
   }
 }
 
-const withSaga = injectSaga({ key: 'main', saga });
+const withSaga = injectSaga({ key: 'projectpage', saga });
 
 export default compose(
   withSaga,
-)(Main);
+)(ProjectPage);

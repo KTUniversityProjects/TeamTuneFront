@@ -7,22 +7,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { makeSelectCurrentUser } from 'containers/App/selectors';
 import ListItem from 'components/ListItem';
 import ProjectLink from './ProjectLink';
 import Wrapper from './Wrapper';
 import DeleteButton from 'components/DeleteButton';
 
 
-export default class ProjectListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export default class Board extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
     // Put together the content of the repository
     const content = (
       <Wrapper>
-        <ProjectLink href={`/project?id=${item.id}`}>
           {item.name}
-        </ProjectLink>
-        
         <DeleteButton
           project-id={item.id}
           children="Delete"

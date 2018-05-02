@@ -22,6 +22,7 @@ import SignUpPage from 'containers/SignUpPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import AboutPage from 'containers/AboutPage/Loadable';
 import Main from 'containers/Main/Loadable';
+import ProjectPage from 'containers/ProjectPage/Loadable';
 import Header from 'components/Header';
 import ProjectsList from 'containers/ProjectsList';
 
@@ -47,6 +48,7 @@ export default function App() {
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/main" component={Main} />
+        <Route exact path="/project" component={ProjectPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
     </AppWrapper>
