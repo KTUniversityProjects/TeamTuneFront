@@ -20,9 +20,9 @@ import { changeDescription } from './actions';
 import { addProjectRequest } from './actions';
 
 import ProjectListItem from '../../components/ProjectListItem';
-import Form from 'components/Form';
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Form from '../../components/Form';
+import Button from '../../components/Button';
+import './Styles.css';
 
 export class ProjectsList extends React.PureComponent {
 
@@ -32,67 +32,47 @@ export class ProjectsList extends React.PureComponent {
 
   render() {
     const { projects, onDelete } = this.props;
-    let content = (<div></div>);
+    var content = (<div></div>);
     if (projects) {
-      content = (
+        content = (
         <div>
           {projects.map(item => (
             <ProjectListItem key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id)}/>
           ))}
-          <div>
-          <Form>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Project name"
-                    value={this.props.name}
-                    onChange={this.props.onChangeName}
-                  /><br />
-                  <Input
-                    id="description"
-                    type="text"
-                    placeholder="Project description"
-                    value={this.props.description}
-                    onChange={this.props.onChangeDescription}
-                  /><br />
-                  <Button
-                    id="add"
-                    type="submit"
-                    children="Add new project"
-                    onClick={this.props.onSubmitForm}
-                  />
-              </Form>
-          </div>
         </div>
       );
     }
-    if (!projects) {
-      content = (
+      return (
+      <div>
+        { content }
+        <div>
           <Form>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Project name"
-                    value={this.props.name}
-                    onChange={this.props.onChangeName}
-                  /><br />
-                  <Input
-                    id="description"
-                    type="text"
-                    placeholder="Project description"
-                    value={this.props.description}
-                    onChange={this.props.onChangeDescription}
-                  /><br />
-                  <Button
-                    id="add"
-                    type="submit"
-                    children="Add new project"
-                    onClick={this.props.onSubmitForm}
-                  />
-              </Form>
+            <input
+              id="name"
+              type="text"
+              placeholder="Project name"
+              value={this.props.name}
+              onChange={this.props.onChangeName}
+            /><br />
+
+            <textarea
+              id="description"
+              placeholder="Project description"
+              value={this.props.description}
+              onChange={this.props.onChangeDescription}
+            /><br />
+
+            <Button
+              id="add"
+              className="submitButton"
+              type="submit"
+              children="+"
+              onClick={this.props.onSubmitForm}
+            />
+          </Form>
+        </div>
+      </div>
       );
-    }
-    return content;
   }
 }
 
@@ -116,6 +96,7 @@ export function mapDispatchToProps(dispatch) {
     },
     onDelete: (projectID) => {
       dispatch(deleteProjectRequest(projectID));
+      return false;
     },
     onChangeName: (evt) => dispatch(changeName(evt.target.value)),
     onChangeDescription: (evt) => dispatch(changeDescription(evt.target.value)),

@@ -4,7 +4,6 @@
 
 import { put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import request from 'utils/request';
 import {SESSIONID} from "../App/constants";
 
 /**
