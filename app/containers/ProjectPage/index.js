@@ -11,6 +11,7 @@ import { compose } from 'redux';
 import { slide as Menu } from 'react-burger-menu';
 
 import ProjectsList from 'containers/ProjectsList';
+import BoardsList from 'containers/BoardsList';
 import injectSaga from 'utils/injectSaga';
 import './Styles.css';
 
@@ -19,14 +20,15 @@ import saga from './saga';
 export class ProjectPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
 
-
   render() {
+    const params = new URLSearchParams(this.props.location.search);
+    const ID = params.get('id');
    return (
       <div>
       <Menu width={ '200px' }>
       <ProjectsList/>
       </Menu>
-      HUJNIAAA
+      <BoardsList projectID={ID}/>
       </div>
     );
   }

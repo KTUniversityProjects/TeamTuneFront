@@ -8,10 +8,10 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
-
-export const LOAD_PROJECTS_REQUEST = 'boilerplate/App/LOAD_PROJECTS_REQUEST';
-export const LOAD_PROJECTS = 'boilerplate/App/LOAD_PROJECTS';
-export const DELETE_PROJECT_REQUEST = 'boilerplate/App/DELETE_PROJECT_REQUEST';
+export const ADD_BOARD_REQUEST = 'boilerplate/App/ADD_BOARDS_REQUEST';
+export const LOAD_BOARDS = 'boilerplate/App/LOAD_BOARDS';
+export const LOAD_BOARDS_REQUEST = 'boilerplate/App/LOAD_BOARDS_REQUEST';
 export const CHANGE_NAME = 'boilerplate/App/CHANGE_NAME';
+export const DELETE_BOARD_REQUEST = 'boilerplate/App/DELETE_BOARD_REQUEST';
 export const CHANGE_DESCRIPTION = 'boilerplate/App/CHANGE_DESCRIPTION';
 export const ADD_PROJECT_REQUEST = 'boilerplate/App/ADD_PROJECT_REQUEST';

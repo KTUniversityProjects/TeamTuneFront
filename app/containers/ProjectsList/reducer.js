@@ -17,7 +17,6 @@ import {
   LOAD_PROJECTS,
   CHANGE_NAME,
   CHANGE_DESCRIPTION,
-  ADD_PROJECT_REQUEST,
 } from './constants';
 
 // The initial state of the App

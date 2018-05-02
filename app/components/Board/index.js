@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import ListItem from 'components/ListItem';
-import ProjectLink from './ProjectLink';
 import Wrapper from './Wrapper';
 import DeleteButton from 'components/DeleteButton';
 
@@ -35,7 +34,7 @@ export default class Board extends React.PureComponent { // eslint-disable-line 
     );
   }
 }
-ProjectListItem.propTypes = {
+Board.propTypes = {
   item: PropTypes.object,
   onDeleteClick: PropTypes.func,
 };

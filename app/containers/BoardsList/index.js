@@ -9,48 +9,101 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import {createStructuredSelector} from 'reselect';
-import {makeSelectProjects} from "./selectors";
+import {makeSelectBoards} from "./selectors";
 import { makeSelectName } from './selectors';
 import { makeSelectDescription } from './selectors';
 
-import {loadProjectsRequest} from "./actions";
-import {deleteProjectRequest} from "./actions";
+import {loadBoardsRequest} from "./actions";
+import {deleteBoardRequest} from "./actions";
 import { changeName} from './actions';
 import { changeDescription } from './actions';
-import { addProjectRequest } from './actions';
+import { addBoardRequest } from './actions';
 
-import ProjectListItem from '../../components/ProjectListItem';
+import Board from '../../components/Board';
 import Button from 'components/Button';
+import Form from 'components/Form';
 import Input from 'components/Input';
 
-export class ProjectsList extends React.PureComponent {
+
+export class BoardsList extends React.PureComponent {
 
   componentDidMount() {
-    this.props.onPageLoad();
+    this.props.onPageLoad(this.props.projectID);
   }
 
   render() {
-    const { projects, onDelete } = this.props;
+    const { boards, onDelete } = this.props;
     let content = (<div></div>);
-    if (projects) {
+    if (boards) {
       content = (
         <div>
-          {projects.map(item => (
-            <ProjectListItem key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id)}/>
+          {boards.map(item => (
+            <Board key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id)}/>
           ))}
+         <div>
+          <Form>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Project name"
+                    value={this.props.name}
+                    onChange={this.props.onChangeName}
+                  /><br />
+                  <Input
+                    id="description"
+                    type="text"
+                    placeholder="Project description"
+                    value={this.props.description}
+                    onChange={this.props.onChangeDescription}
+                  /><br />
+                  <Button
+                    id="add"
+                    type="submit"
+                    children="Add new project"
+                    onClick={this.props.onSubmitForm.bind(null, this.props.projectID)}
+                  />
+              </Form>
+          </div>
         </div>
       );
+    }
+    if (!boards) {
+      content = (
+        <Form>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Project name"
+                    value={this.props.name}
+                    onChange={this.props.onChangeName}
+                  /><br />
+                  <Input
+                    id="description"
+                    type="text"
+                    placeholder="Project description"
+                    value={this.props.description}
+                    onChange={this.props.onChangeDescription}
+                  /><br />
+                  <Button
+                    id="add"
+                    type="submit"
+                    children="Add new project"
+                    onClick={this.props.onSubmitForm.bind(null, this.props.projectID)}
+                  />
+              </Form>
+        )
     }
     return content;
   }
 }
 
-ProjectsList.propTypes = {
-  projects: PropTypes.oneOfType([
+BoardsList.propTypes = {
+  boards: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.bool,
   ]),
   onDelete: PropTypes.func,
+  projectID: PropTypes.string,
   onSubmitForm: PropTypes.func,
   name: PropTypes.string,
   description: PropTypes.string,
@@ -60,23 +113,22 @@ ProjectsList.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onPageLoad: (evt) => {
-      dispatch(loadProjectsRequest());
+    onPageLoad: (data) => {
+      dispatch(loadBoardsRequest(data));
     },
-    onDelete: (projectID) => {
-      dispatch(deleteProjectRequest(projectID));
+    onDelete: (boardID) => {
+      dispatch(deleteBoardRequest(boardID));
     },
     onChangeName: (evt) => dispatch(changeName(evt.target.value)),
     onChangeDescription: (evt) => dispatch(changeDescription(evt.target.value)),
-    onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(addProjectRequest());
+    onSubmitForm: (projectID) => {
+      dispatch(addBoardRequest(projectID));
     },
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  projects: makeSelectProjects(),
+  boards: makeSelectBoards(),
   name: makeSelectName(),
   description: makeSelectDescription(),
 });
@@ -84,11 +136,11 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withSaga = injectSaga({key: 'projects', saga});
-const withReducer = injectReducer({key: 'projects', reducer});
+const withSaga = injectSaga({key: 'boards', saga});
+const withReducer = injectReducer({key: 'boards', reducer});
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(ProjectsList);
+)(BoardsList);

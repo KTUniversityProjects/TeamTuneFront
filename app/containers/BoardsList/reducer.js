@@ -13,30 +13,27 @@
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_PROJECTS_REQUEST,
-  LOAD_PROJECTS,
-  CHANGE_NAME,
-  CHANGE_DESCRIPTION,
-  ADD_PROJECT_REQUEST,
+    LOAD_BOARDS,
+    LOAD_BOARDS_REQUEST,
+    CHANGE_NAME,
+    CHANGE_DESCRIPTION,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-  projects: false,
-  name: '',
-  description: '',
+  boards: false,
 });
 
-function projectListReducer(state = initialState, action) {
+function boardsListReducer(state = initialState, action) {
   switch (action.type) {
 
-    case LOAD_PROJECTS:
+  	case LOAD_BOARDS:
       return state
-        .set('projects', action.projects);
+        .set('boards', action.boards);
 
-    case LOAD_PROJECTS_REQUEST:
+    case LOAD_BOARDS_REQUEST:
       return state
-        .set('projects', []);
+        .set('boards', []);
 
     case CHANGE_NAME:
       return state.set('name', action.name);
@@ -49,4 +46,4 @@ function projectListReducer(state = initialState, action) {
   }
 }
 
-export default projectListReducer;
+export default boardsListReducer;

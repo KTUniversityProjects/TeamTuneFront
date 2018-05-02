@@ -6,28 +6,35 @@ import {call, put, takeLatest, select} from 'redux-saga/effects';
 
 import request from 'utils/request';
 import {SESSIONID, USERID} from "../App/constants";
-import {DELETE_PROJECT_REQUEST, ADD_PROJECT_REQUEST, LOAD_PROJECTS_REQUEST} from "./constants";
-import {loadProjects} from "./actions";
+import {LOAD_BOARDS_REQUEST, DELETE_BOARD_REQUEST, ADD_BOARD_REQUEST} from "./constants";
 import {makeSelectName, makeSelectDescription} from "./selectors";
+import {loadBoards} from "./actions";
 
 /**
  * Github repos request/response handler
  */
-export function* getProjects() {
-  const requestURL = `http://localhost:1338`;
+export function* getBoards(action) {
+  const requestURL = `http://localhost:1337`;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
+  const projectID = action.projectID;
   const requestData = {
     session: {
       id: sessionID,
       user: userID
+    },
+    project:{
+      id: projectID
     }
   };
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "POST", requestData);
+    console.log(requestData);
     if (response.code == 0) {
-      yield put(loadProjects(response.data));
+      console.log("BOARDAI:" + response.data);
+
+      yield put(loadBoards(response.data));
     }
   } catch (err) {
       yield put()
@@ -37,7 +44,7 @@ export function* getProjects() {
 }
 
 export function* deleteProjectSaga(action) {
-  const requestURL = `http://localhost:1338`;
+  /*const requestURL = `http://localhost:1338`;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
   const pID = action.projectID;
@@ -57,30 +64,31 @@ export function* deleteProjectSaga(action) {
       yield getProjects();
     }
   } catch (err) {
-  }
-
+  }*/
   return null;
 }
 
-export function* addProjectSaga(action) {
-  const requestURL = `http://localhost:1338`;
+export function* addBoardSaga(action) {
+  const requestURL = `http://localhost:1337`;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
+  const projectID = action.projectID;
   const requestData = {
     session: {
       id: sessionID,
       user: userID
     },
-    project:{
+    board:{
       name: yield select(makeSelectName()),
-      description: yield select(makeSelectDescription())
+      description: yield select(makeSelectDescription()),
+      project: projectID
   }
   };
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "PUT", requestData);
     if (response.code == 0) {
-      yield getProjects();
+      yield getBoards(action);
     }
   } catch (err) {
 
@@ -93,8 +101,7 @@ export function* addProjectSaga(action) {
  * Root saga manages watcher lifecycle
  */
 export default function* projectListInit() {
-  yield takeLatest(DELETE_PROJECT_REQUEST, deleteProjectSaga);
-  yield takeLatest(LOAD_PROJECTS_REQUEST, getProjects);
-  yield takeLatest(ADD_PROJECT_REQUEST, addProjectSaga);
-  
+ //yield takeLatest(DELETE_PROJECT_REQUEST, deleteProjectSaga);
+  yield takeLatest(LOAD_BOARDS_REQUEST, getBoards);
+  yield takeLatest(ADD_BOARD_REQUEST, addBoardSaga);
 }

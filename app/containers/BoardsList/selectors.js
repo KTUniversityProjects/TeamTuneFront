@@ -8,14 +8,14 @@
 
  import { createSelector } from 'reselect';
 
- const selectMain = (state) => state.get('projects');
+ const selectMain = (state) => state.get('boards');
 
- const makeSelectProjects = () => createSelector(
+ const makeSelectBoards = () => createSelector(
   selectMain,
-   (mainState) => mainState.get('projects')
+   (mainState) => mainState.get('boards')
  );
 
-const makeSelectName = () => createSelector(
+ const makeSelectName = () => createSelector(
   selectMain,
   (mainState) => mainState.get('name')
 );
@@ -26,7 +26,7 @@ const makeSelectDescription = () => createSelector(
 
  export {
    selectMain,
-   makeSelectProjects,
+   makeSelectBoards,
    makeSelectName,
    makeSelectDescription,
  };
