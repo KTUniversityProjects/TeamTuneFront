@@ -20,9 +20,10 @@ import { changeDescription } from './actions';
 import { addProjectRequest } from './actions';
 
 import ProjectListItem from '../../components/ProjectListItem';
-import Form from 'components/Form';
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Form from '../../components/Form';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import './Styles.css';
 
 export class ProjectsList extends React.PureComponent {
 
@@ -69,20 +70,23 @@ export class ProjectsList extends React.PureComponent {
     if (!projects) {
       content = (
           <Form>
-                  <Input
+                  <input
+                    className="inputClass"
                     id="name"
                     type="text"
                     placeholder="Project name"
                     value={this.props.name}
+                    autoComplete="false"
                     onChange={this.props.onChangeName}
-                  /><br />
-                  <Input
+                  />
+                  <textarea
+                    className="inputClass"
                     id="description"
-                    type="text"
+                    autoComplete="false"
                     placeholder="Project description"
-                    value={this.props.description}
                     onChange={this.props.onChangeDescription}
-                  /><br />
+                    value={this.props.description}
+                  />
                   <Button
                     id="add"
                     type="submit"
@@ -116,6 +120,7 @@ export function mapDispatchToProps(dispatch) {
     },
     onDelete: (projectID) => {
       dispatch(deleteProjectRequest(projectID));
+      return false;
     },
     onChangeName: (evt) => dispatch(changeName(evt.target.value)),
     onChangeDescription: (evt) => dispatch(changeDescription(evt.target.value)),

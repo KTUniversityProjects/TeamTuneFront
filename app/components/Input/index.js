@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
-const Input = styled.input`
-  outline: none;
-  border-bottom: 1px dotted #999;
-`;
-
-export default Input;
+export default styled.input`
+  background:white;
+  border:2px dashed grey;
+  padding:4px;
+  margin-top:10px;
+  color:black;
+  width:250px;
+  border-radius:5px;
+  `;
