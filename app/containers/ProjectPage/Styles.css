@@ -13,6 +13,7 @@
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
+  position: fixed;
   height: 24px;
   width: 24px;
 }

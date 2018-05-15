@@ -9,15 +9,10 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import {createStructuredSelector} from 'reselect';
-import {makeSelectProjects} from "./selectors";
-import { makeSelectName } from './selectors';
-import { makeSelectDescription } from './selectors';
+import { makeSelectProjects, makeSelectName, makeSelectDescription } from './selectors';
 
-import {loadProjectsRequest} from "./actions";
-import {deleteProjectRequest} from "./actions";
-import { changeName} from './actions';
-import { changeDescription } from './actions';
-import { addProjectRequest } from './actions';
+import {loadProjectsRequest, deleteProjectRequest} from "./actions";
+import { changeName, changeDescription, addProjectRequest, logoutRequest } from './actions';
 
 import ProjectListItem from '../../components/ProjectListItem';
 import Form from '../../components/Form';
@@ -69,6 +64,14 @@ export class ProjectsList extends React.PureComponent {
               children="+"
               onClick={this.props.onSubmitForm}
             />
+
+            <Button
+              id="logout"
+              className="submitButton"
+              type="submit"
+              children="Logout"
+              onClick={this.props.onLogoutForm}
+            />
           </Form>
         </div>
       </div>
@@ -83,6 +86,7 @@ ProjectsList.propTypes = {
   ]),
   onDelete: PropTypes.func,
   onSubmitForm: PropTypes.func,
+  onLogoutForm: PropTypes.func,
   name: PropTypes.string,
   description: PropTypes.string,
   onChangeName: PropTypes.func,
@@ -103,6 +107,11 @@ export function mapDispatchToProps(dispatch) {
     onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(addProjectRequest());
+    },
+    onLogoutForm: (evt) => {
+      console.log("LOGOUT PRESSED");
+      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+      dispatch(logoutRequest());
     },
   };
 }

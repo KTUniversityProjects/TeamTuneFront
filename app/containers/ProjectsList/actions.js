@@ -6,6 +6,7 @@ import {
     CHANGE_NAME,
     CHANGE_DESCRIPTION,
     ADD_PROJECT_REQUEST,
+    LOGOUT_REQUEST,
 } from './constants';
 
 /**
@@ -47,6 +48,12 @@ export function deleteProjectRequest(id) {
 export function addProjectRequest() {
   return {
     type: ADD_PROJECT_REQUEST,
+  };
+}
+
+export function logoutRequest() {
+  return {
+    type: LOGOUT_REQUEST,
   };
 }
 /**

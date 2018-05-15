@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import ListItem from 'components/ListItem';
-import Wrapper from './Wrapper';
 import DeleteButton from './DeleteButton';
 
 
@@ -17,14 +16,16 @@ export default class Board extends React.PureComponent { // eslint-disable-line 
   render() {
     const item = this.props.item;
     return (
-      <Wrapper>
+      <div className="boardBlock">
+        <div>
           {item.name}
         <DeleteButton
           project-id={item.id}
           children="Delete"
           onClick={this.props.onDeleteClick}
         />
-      </Wrapper>
+        </div>
+        </div>
     );
   }
 }

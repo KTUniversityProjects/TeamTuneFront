@@ -15,3 +15,4 @@ export const DELETE_PROJECT_REQUEST = 'boilerplate/App/DELETE_PROJECT_REQUEST';
 export const CHANGE_NAME = 'boilerplate/App/CHANGE_NAME';
 export const CHANGE_DESCRIPTION = 'boilerplate/App/CHANGE_DESCRIPTION';
 export const ADD_PROJECT_REQUEST = 'boilerplate/App/ADD_PROJECT_REQUEST';
+export const LOGOUT_REQUEST = 'boilerplate/App/ADD_PROJECT_REQUEST';

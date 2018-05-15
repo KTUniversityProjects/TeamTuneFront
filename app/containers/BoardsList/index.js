@@ -23,7 +23,7 @@ import Board from '../../components/Board';
 import Button from 'components/Button';
 import Form from 'components/Form';
 import Input from 'components/Input';
-
+import './Styles.css';
 
 export class BoardsList extends React.PureComponent {
 
@@ -33,69 +33,53 @@ export class BoardsList extends React.PureComponent {
 
   render() {
     const { boards, onDelete } = this.props;
-    let content = (<div></div>);
+    var content = (<div></div>);
     if (boards) {
       content = (
         <div>
           {boards.map(item => (
-            <Board key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id)}/>
+            <Board key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id, this.props.projectID)}/>
           ))}
-         <div>
-          <Form>
+        </div>
+        );
+    }
+      return (
+        <div>
+        {content}
+        <div className="boardBlock">
+        <div>
+            <Form >
                   <Input
                     id="name"
                     type="text"
-                    placeholder="Project name"
+                    placeholder="Board name"
+                    className="newForm"
                     value={this.props.name}
                     onChange={this.props.onChangeName}
                   /><br />
                   <Input
                     id="description"
                     type="text"
-                    placeholder="Project description"
+                    className="newForm"
+                    placeholder="Board description"
                     value={this.props.description}
                     onChange={this.props.onChangeDescription}
                   /><br />
                   <Button
                     id="add"
                     type="submit"
-                    children="Add new project"
+                    className="newForm"
+                    class="submitButton"
+                    children="Add new board"
                     onClick={this.props.onSubmitForm.bind(null, this.props.projectID)}
                   />
               </Form>
           </div>
         </div>
+          </div>
       );
     }
-    if (!boards) {
-      content = (
-        <Form>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Project name"
-                    value={this.props.name}
-                    onChange={this.props.onChangeName}
-                  /><br />
-                  <Input
-                    id="description"
-                    type="text"
-                    placeholder="Project description"
-                    value={this.props.description}
-                    onChange={this.props.onChangeDescription}
-                  /><br />
-                  <Button
-                    id="add"
-                    type="submit"
-                    children="Add new project"
-                    onClick={this.props.onSubmitForm.bind(null, this.props.projectID)}
-                  />
-              </Form>
-        )
-    }
-    return content;
   }
-}
 
 BoardsList.propTypes = {
   boards: PropTypes.oneOfType([
@@ -116,8 +100,10 @@ export function mapDispatchToProps(dispatch) {
     onPageLoad: (data) => {
       dispatch(loadBoardsRequest(data));
     },
-    onDelete: (boardID) => {
-      dispatch(deleteBoardRequest(boardID));
+    onDelete: (boardID, projectID) => {
+      console.log("DELETE CLICKED");
+      console.log("TRINAMO PROJEKTO ID: " + projectID);
+      dispatch(deleteBoardRequest(boardID, projectID));
     },
     onChangeName: (evt) => dispatch(changeName(evt.target.value)),
     onChangeDescription: (evt) => dispatch(changeDescription(evt.target.value)),

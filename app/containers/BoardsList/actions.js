@@ -29,10 +29,11 @@ export function loadBoardsRequest(id) {
   };
 }
 
-export function deleteBoardRequest(id) {
+export function deleteBoardRequest(id, pID) {
   return {
     type: DELETE_BOARD_REQUEST,
-    boardID: id
+    boardID: id,
+    projectID: pID
   };
 }
 

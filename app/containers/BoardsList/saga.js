@@ -32,8 +32,6 @@ export function* getBoards(action) {
     const response = yield call(request, requestURL, "POST", requestData);
     console.log(requestData);
     if (response.code == 0) {
-      console.log("BOARDAI:" + response.data);
-
       yield put(loadBoards(response.data));
     }
   } catch (err) {
@@ -89,9 +87,7 @@ export function* deleteBoardSaga(action) {
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "DELETE", requestData);
-    console.log("BOOARD DELETE");
-    console.log(response);
-    if (response.code == 203) {
+    if (response.code == 0) {
       yield getBoards(action);
     }
   } catch (err) {

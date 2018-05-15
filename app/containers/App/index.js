@@ -43,6 +43,7 @@ export default function App() {
         <meta name="description" content="TeamTune application" />
       </Helmet>
       <Header />
+      <div style={{'marginTop':'35px'}}>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/about" component={AboutPage} />
@@ -51,6 +52,7 @@ export default function App() {
         <Route exact path="/project" component={ProjectPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
+      </div>
     </AppWrapper>
   );
 }
