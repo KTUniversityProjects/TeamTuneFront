@@ -43,31 +43,6 @@ export function* getBoards(action) {
   return null;
 }
 
-export function* deleteProjectSaga(action) {
-  /*const requestURL = `http://localhost:1338`;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
-  const pID = action.projectID;
-  const requestData = {
-    session: {
-      id: sessionID,
-      user: userID
-    },
-    project:{
-    id: pID
-  }
-  };
-  try {
-    // Call our request helper (see 'utils/request')
-    const response = yield call(request, requestURL, "DELETE", requestData);
-    if (response.code == 0) {
-      yield getProjects();
-    }
-  } catch (err) {
-  }*/
-  return null;
-}
-
 export function* addBoardSaga(action) {
   const requestURL = `http://localhost:1337`;
   const sessionID = sessionStorage.getItem(SESSIONID);
@@ -97,11 +72,39 @@ export function* addBoardSaga(action) {
   return null;
 }
 
+export function* deleteBoardSaga(action) {
+  const requestURL = `http://localhost:1337`;
+  const sessionID = sessionStorage.getItem(SESSIONID);
+  const userID = sessionStorage.getItem(USERID);
+  const boardID= action.boardID;
+  const requestData = {
+    session: {
+      id: sessionID,
+      user: userID
+    },
+    board:{
+      id: boardID
+  }
+  };
+  try {
+    // Call our request helper (see 'utils/request')
+    const response = yield call(request, requestURL, "DELETE", requestData);
+    console.log("BOOARD DELETE");
+    console.log(response);
+    if (response.code == 203) {
+      yield getBoards(action);
+    }
+  } catch (err) {
+
+  }
+  return null;
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
 export default function* projectListInit() {
- //yield takeLatest(DELETE_PROJECT_REQUEST, deleteProjectSaga);
   yield takeLatest(LOAD_BOARDS_REQUEST, getBoards);
   yield takeLatest(ADD_BOARD_REQUEST, addBoardSaga);
+  yield takeLatest(DELETE_BOARD_REQUEST, deleteBoardSaga);
 }

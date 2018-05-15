@@ -25,7 +25,7 @@ export class ProjectPage extends React.PureComponent { // eslint-disable-line re
     const ID = params.get('id');
    return (
       <div>
-      <Menu width={ '200px' }>
+      <Menu width={ 'auto' }>
       <ProjectsList/>
       </Menu>
       <BoardsList projectID={ID}/>

@@ -10,14 +10,13 @@ import PropTypes from 'prop-types';
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import ListItem from 'components/ListItem';
 import Wrapper from './Wrapper';
-import DeleteButton from 'components/DeleteButton';
+import DeleteButton from './DeleteButton';
 
 
 export default class Board extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
-    // Put together the content of the repository
-    const content = (
+    return (
       <Wrapper>
           {item.name}
         <DeleteButton
@@ -26,11 +25,6 @@ export default class Board extends React.PureComponent { // eslint-disable-line 
           onClick={this.props.onDeleteClick}
         />
       </Wrapper>
-    );
-
-    // Render the content into a list item
-    return (
-      <ListItem key={`project-item-${item.id}`} item={content} />
     );
   }
 }
