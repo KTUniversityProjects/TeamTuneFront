@@ -1,0 +1,19 @@
+.projectLink {
+  color: #41addd;
+  display: block;
+  float: left;
+  width: 210px;
+  text-decoration: none;
+}
+
+.projectLink:active {
+  color: #41addd;
+}
+
+.projectLink:hover {
+  color: #fff;
+}
+
+.projectLink:focus {
+  color: #41addd;
+}

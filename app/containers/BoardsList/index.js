@@ -31,6 +31,13 @@ export class BoardsList extends React.PureComponent {
     this.props.onPageLoad(this.props.projectID);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.projectID != nextProps.projectID)
+    {
+       this.props.onPageLoad(nextProps.projectID);
+    }
+  }
+
   render() {
     const { boards, onDelete } = this.props;
     let content = (<div></div>);

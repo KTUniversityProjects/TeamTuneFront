@@ -4,11 +4,8 @@
  * List all the features
  */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
-import { compose } from 'redux';
-import { slide as Menu } from 'react-burger-menu';
+import {compose} from 'redux';
+import {slide as Menu} from 'react-burger-menu';
 
 import ProjectsList from 'containers/ProjectsList';
 import BoardsList from 'containers/BoardsList';
@@ -17,24 +14,35 @@ import './Styles.css';
 
 import saga from './saga';
 
-export class ProjectPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class ProjectPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  componentWillMount() {
 
-
-  render() {
     const params = new URLSearchParams(this.props.location.search);
     const ID = params.get('id');
-   return (
+
+    this.setState({projectID: ID});
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const params = new URLSearchParams(nextProps.location.search);
+    const ID = params.get('id');
+
+    this.setState({projectID: ID});
+  }
+
+  render() {
+    return (
       <div>
-      <Menu width={ 'auto' }>
-      <ProjectsList/>
-      </Menu>
-      <BoardsList projectID={ID}/>
+        <Menu isOpen={false} width={'auto'}>
+          <ProjectsList/>
+        </Menu>
+        <BoardsList projectID={this.state.projectID}/>
       </div>
     );
   }
 }
 
-const withSaga = injectSaga({ key: 'projectpage', saga });
+const withSaga = injectSaga({key: 'projectpage', saga});
 
 export default compose(
   withSaga,
