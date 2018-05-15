@@ -7,9 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ProjectLink from './ProjectLink';
+import  './Styles.css';
 import Wrapper from './Wrapper';
 import DeleteButton from './DeleteButton';
+import { Link } from 'react-router-dom';
 
 
 export default class ProjectListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -18,9 +19,11 @@ export default class ProjectListItem extends React.PureComponent { // eslint-dis
     // Put together the content of the repository
     return (
       <Wrapper>
-        <ProjectLink href={`/project?id=${item.id}`}>
-          {item.name}
-        </ProjectLink>
+        <Link
+          className="projectLink"
+          to={`/project?id=${item.id}`}
+          children={item.name}
+        />
         <DeleteButton
           project-id={item.id}
           children="Delete"

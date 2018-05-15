@@ -25,6 +25,8 @@ export class ProjectsList extends React.PureComponent {
     this.props.onPageLoad();
   }
 
+
+
   render() {
     const { projects, onDelete } = this.props;
     var content = (<div></div>);
