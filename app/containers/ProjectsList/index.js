@@ -60,21 +60,19 @@ export class ProjectsList extends React.PureComponent {
             /><br />
 
             <Button
-              id="add"
               className="submitButton"
               type="submit"
               children="+"
               onClick={this.props.onSubmitForm}
             />
-
-            <Button
-              id="logout"
-              className="submitButton"
-              type="submit"
-              children="Logout"
-              onClick={this.props.onLogoutForm}
-            />
           </Form>
+
+          <Button
+            className="submitButton"
+            type="submit"
+            children="Logout"
+            onClick={this.props.logout}
+          />
         </div>
       </div>
       );
@@ -88,7 +86,7 @@ ProjectsList.propTypes = {
   ]),
   onDelete: PropTypes.func,
   onSubmitForm: PropTypes.func,
-  onLogoutForm: PropTypes.func,
+  logout: PropTypes.func,
   name: PropTypes.string,
   description: PropTypes.string,
   onChangeName: PropTypes.func,
@@ -110,9 +108,7 @@ export function mapDispatchToProps(dispatch) {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(addProjectRequest());
     },
-    onLogoutForm: (evt) => {
-      console.log("LOGOUT PRESSED");
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+    logout: () => {
       dispatch(logoutRequest());
     },
   };
