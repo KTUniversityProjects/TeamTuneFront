@@ -25,7 +25,7 @@ export default class Board extends React.PureComponent { // eslint-disable-line 
         /></b></u></center></font>
         </div>
         <div>
-        <TasksList boardID={item.id} />
+        <TasksList boardID={item.id} tasks={item.tasks} projectID={this.props.projectID}/>
         </div>
         </div>
     );
@@ -33,5 +33,6 @@ export default class Board extends React.PureComponent { // eslint-disable-line 
 }
 Board.propTypes = {
   item: PropTypes.object,
+  projectID: PropTypes.string,
   onDeleteClick: PropTypes.func,
 };

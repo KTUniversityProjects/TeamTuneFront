@@ -2,25 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import reducer from './reducer';
-import saga from './saga';
 import {compose} from 'redux';
-import injectReducer from 'utils/injectReducer';
-import injectSaga from 'utils/injectSaga';
 
 import {createStructuredSelector} from 'reselect';
-import {makeSelectTasks} from "./selectors";
-import {deleteTaskRequest, loadTasksRequest, addTaskRequest} from "./actions";
+import {deleteTaskRequest, addTaskRequest} from "./actions";
 
 import Button from 'components/Button';
 import Task from '../../components/Task';
 import './Styles.css';
 
 export class TasksList extends React.PureComponent {
-
-  componentDidMount() {
-    this.props.onPageLoad(this.props.boardID);
-  }
 
   render() {
     const { tasks, onDelete } = this.props;
@@ -29,7 +20,7 @@ export class TasksList extends React.PureComponent {
         content = (
         <div>
           {tasks.map(item => (
-            <Task key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id)}/>
+            <Task key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id, this.props.projectID)}/>
           ))}
         </div>
       );
@@ -43,7 +34,7 @@ export class TasksList extends React.PureComponent {
                     className="newForm"
                     class="submitButton"
                     children="New task"
-                    onClick={this.props.onSubmitForm.bind(null, this.props.boardID)}
+                    onClick={this.props.onSubmitForm.bind(null, this.props.boardID, this.props.projectID)}
                   />
       </div>
       );
@@ -51,40 +42,29 @@ export class TasksList extends React.PureComponent {
 }
 
 TasksList.propTypes = {
-  tasks: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.bool,
-  ]),
+  item: PropTypes.object,
   onDelete: PropTypes.func,
   boardID: PropTypes.string,
+  projectID: PropTypes.string,
   onSubmitForm: PropTypes.func,
-
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onPageLoad: (tasks) => {
-      dispatch(loadTasksRequest(tasks));
-  },
-    onDelete: (itemID) => {
-      dispatch(deleteTaskRequest(itemID));
+    onDelete: (itemID, projectID) => {
+      dispatch(deleteTaskRequest(itemID, projectID));
     },
-    onSubmitForm: (boardID) => {
-      dispatch(addTaskRequest(boardID));
+    onSubmitForm: (boardID, projectID) => {
+      dispatch(addTaskRequest(boardID, projectID));
     },
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  tasks: makeSelectTasks(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withSaga = injectSaga({key: 'tasks', saga});
-const withReducer = injectReducer({key: 'tasks', reducer});
 
 export default compose(
-  withReducer,
-  withSaga,
   withConnect,
 )(TasksList);

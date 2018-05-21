@@ -45,8 +45,8 @@ export class BoardsList extends React.PureComponent {
       content = (
         <div>
           {boards.map(item => (
-            <Board key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id, this.props.projectID)}/>
-          ))} 
+            <Board key={item.id} item={item} projectID={this.props.projectID} onDeleteClick={onDelete.bind(null, item.id, this.props.projectID)}/>
+          ))}
         </div>
         );
     }

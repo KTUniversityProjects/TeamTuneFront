@@ -6,17 +6,19 @@ import {
 } from './constants';
 
 
-export function deleteTaskRequest(id) {
+export function deleteTaskRequest(id, pID) {
   return {
     type: DELETE_TASK_REQUEST,
-    taskID: id
+    taskID: id,
+    projectID: pID
   };
 }
 
-export function loadTasks(tasks) {
+export function loadTasks(tasks, boardID) {
   return {
     type: LOAD_TASKS,
-    tasks
+    tasks,
+    boardID
   };
 }
 
@@ -27,9 +29,10 @@ export function loadTasksRequest(id) {
   };
 }
 
-export function addTaskRequest(id) {
+export function addTaskRequest(id, pID) {
   return {
     type: ADD_TASK_REQUEST,
-    boardID: id
+    boardID: id,
+    projectID: pID
   };
 }

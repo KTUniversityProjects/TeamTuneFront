@@ -13,11 +13,14 @@
 import { fromJS } from 'immutable';
 
 import {
-    LOAD_BOARDS,
-    LOAD_BOARDS_REQUEST,
-    CHANGE_NAME,
-    CHANGE_DESCRIPTION,
+  LOAD_BOARDS,
+  LOAD_BOARDS_REQUEST,
+  CHANGE_NAME,
+  CHANGE_DESCRIPTION,
 } from './constants';
+import {
+  LOADS_TASKS
+} from '../TasksList/constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -34,8 +37,7 @@ function boardsListReducer(state = initialState, action) {
         .set('boards', action.boards);
 
     case LOAD_BOARDS_REQUEST:
-      return state
-        .set('boards', []);
+      return state.set('boards', []);
 
     case CHANGE_NAME:
       return state.set('name', action.name);
