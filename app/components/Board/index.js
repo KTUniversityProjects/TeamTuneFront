@@ -25,7 +25,7 @@ export default class Board extends React.PureComponent { // eslint-disable-line 
         /></b></u></center></font>
         </div>
         <div>
-        <TasksList tasks={item.tasks} boardID={item.id} />
+        <TasksList boardID={item.id} />
         </div>
         </div>
     );

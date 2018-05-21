@@ -13,7 +13,7 @@ import {loadTasks} from "./actions";
  * Github repos request/response handler
  */
 
-const URL = HOST + `1337`;
+const URL = HOST + `1341`;
 
 export function* getTasks(action) {
   const requestURL = URL;
@@ -29,14 +29,16 @@ export function* getTasks(action) {
       id: boardID
     }
   };
+  console.log('tasks_get');
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "POST", requestData);
+    console.log(response);
     if (response.code == 0) {
       yield put(loadTasks(response.data));
     }
   } catch (err) {
-      yield put()
+    console.log(err)
   }
 
   return null;
@@ -59,13 +61,14 @@ export function* addTaskSaga(action) {
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "PUT", requestData);
+    console.log(response);
     console.log("ADD TASK SAGA RESPONSE: ");
     console.log(response);
     if (response.code == 0) {
       yield getTasks(action);
     }
   } catch (err) {
-
+    console.log(err)
   }
 
   return null;
@@ -92,7 +95,7 @@ export function* deleteTaskSaga(action) {
       getTasks(action);
     }
   } catch (err) {
-
+    console.log(err)
   }
   return null;
 }
@@ -104,4 +107,12 @@ export default function* taskListInit() {
   yield takeLatest(DELETE_TASK_REQUEST, deleteTaskSaga);
   yield takeLatest(ADD_TASK_REQUEST, addTaskSaga);
   yield takeLatest(LOAD_TASKS_REQUEST, getTasks);
+}
+
+project:{
+  "id":"lalala",
+  "users":[
+    "alalala@asdasd.lt",
+    "xxxx@xx.lt"
+  ]
 }
