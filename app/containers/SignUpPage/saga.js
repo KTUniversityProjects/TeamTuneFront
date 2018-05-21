@@ -9,12 +9,17 @@ import {makeSelectPassword, makeSelectUsername, makeSelectPasswordConfirm, makeS
 import {SIGNUP} from "./constants";
 import {signupSuccess, requestError} from "./actions";
 
+import {HOST} from "../App/constants";
+
 /**
  * Login request handler
  */
+
+const URL = HOST + `1339`;
+
 export function* signupRequest() {
 
-  const requestURL = `http://localhost:1339`;
+  const requestURL = URL;
   const requestData = {
     username: yield select(makeSelectUsername()),
     password: yield select(makeSelectPassword()),

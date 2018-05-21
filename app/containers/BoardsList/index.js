@@ -46,7 +46,7 @@ export class BoardsList extends React.PureComponent {
         <div>
           {boards.map(item => (
             <Board key={item.id} item={item} onDeleteClick={onDelete.bind(null, item.id, this.props.projectID)}/>
-          ))}
+          ))} 
         </div>
         );
     }
@@ -108,8 +108,6 @@ export function mapDispatchToProps(dispatch) {
       dispatch(loadBoardsRequest(data));
     },
     onDelete: (boardID, projectID) => {
-      console.log("DELETE CLICKED");
-      console.log("TRINAMO PROJEKTO ID: " + projectID);
       dispatch(deleteBoardRequest(boardID, projectID));
     },
     onChangeName: (evt) => dispatch(changeName(evt.target.value)),

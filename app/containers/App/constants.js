@@ -12,3 +12,4 @@
 export const DEFAULT_LOCALE = 'en';
 export const SESSIONID = 'sessionID';
 export const USERID = 'userID';
+export const HOST = 'http://192.168.99.100:';

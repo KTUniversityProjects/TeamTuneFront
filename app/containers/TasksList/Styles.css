@@ -1,0 +1,32 @@
+input#description{
+  height:100px;
+}
+
+.submitButton{
+  width:100%;
+  padding:0px;
+  font-size:30px;
+  line-height:35px;
+  width:250px;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus{
+  outline:none;
+}
+input[type="password"],
+input[type="text"],
+textarea
+{
+  resize: none;
+  background:white;
+  border:2px dashed grey;
+  padding:4px;
+  margin-top:10px;
+  color:black;
+  width:250px;
+  border-radius:5px;
+}
+textarea{
+  height:150px;
+}

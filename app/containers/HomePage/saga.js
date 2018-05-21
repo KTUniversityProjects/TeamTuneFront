@@ -7,10 +7,9 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import {makeSelectPassword, makeSelectUsername} from './selectors';
 import {LOGIN} from "./constants";
-import {SESSIONID,USERID} from "../App/constants";
+import {SESSIONID,USERID, HOST} from "../App/constants";
 import { requestError} from "./actions";
 import { push } from 'react-router-redux';
-
 /**
  * Login request handler
  */
@@ -19,7 +18,7 @@ export function* loginRequest() {
   // Select username and password from store
   const username = yield select(makeSelectUsername());
   const password = yield select(makeSelectPassword());
-  const requestURL = `http://localhost:1339`;
+  const requestURL = HOST+`1339`;
 
   try {
     // Call our request helper (see 'utils/request')

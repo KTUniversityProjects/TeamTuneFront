@@ -25,8 +25,6 @@ export class ProjectsList extends React.PureComponent {
     this.props.onPageLoad();
   }
 
-
-
   render() {
     const { projects, onDelete } = this.props;
     var content = (<div></div>);
@@ -100,7 +98,6 @@ export function mapDispatchToProps(dispatch) {
     },
     onDelete: (projectID) => {
       dispatch(deleteProjectRequest(projectID));
-      return false;
     },
     onChangeName: (evt) => dispatch(changeName(evt.target.value)),
     onChangeDescription: (evt) => dispatch(changeDescription(evt.target.value)),

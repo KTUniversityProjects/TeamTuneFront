@@ -5,14 +5,16 @@
 import {call, put, takeLatest, select} from 'redux-saga/effects';
 
 import request from 'utils/request';
-import {SESSIONID, USERID} from "../App/constants";
+import {SESSIONID, USERID, HOST} from "../App/constants";
 import {LOGOUT_REQUEST, DELETE_PROJECT_REQUEST, ADD_PROJECT_REQUEST, LOAD_PROJECTS_REQUEST} from "./constants";
 import {loadProjects} from "./actions";
 import {makeSelectName, makeSelectDescription} from "./selectors";
 import { push } from 'react-router-redux';
 
+const URL = HOST + `1338`;
+
 export function* getProjects() {
-  const requestURL = `http://localhost:1338`;
+  const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
   const requestData = {
@@ -35,7 +37,7 @@ export function* getProjects() {
 }
 
 export function* deleteProjectSaga(action) {
-  const requestURL = `http://localhost:1338`;
+  const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
   const pID = action.projectID;
@@ -61,7 +63,7 @@ export function* deleteProjectSaga(action) {
 }
 
 export function* addProjectSaga(action) {
-  const requestURL = `http://localhost:1338`;
+  const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
   const requestData = {

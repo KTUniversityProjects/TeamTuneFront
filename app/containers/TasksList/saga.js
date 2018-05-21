@@ -2,59 +2,38 @@
  * Gets the repositories of the user from Github
  */
 
-import {call, put, takeLatest, select} from 'redux-saga/effects';
+import {call, put, takeLatest, select, take} from 'redux-saga/effects';
 
 import request from 'utils/request';
 import {SESSIONID, USERID, HOST} from "../App/constants";
-import {LOAD_BOARDS_REQUEST, DELETE_BOARD_REQUEST, ADD_BOARD_REQUEST} from "./constants";
-import {makeSelectName, makeSelectDescription} from "./selectors";
-import {loadBoards} from "./actions";
+import {LOAD_TASKS_REQUEST, DELETE_TASK_REQUEST, ADD_TASK_REQUEST} from "./constants";
+import {loadTasks} from "./actions";
 
 /**
  * Github repos request/response handler
  */
 
- const URL = HOST + `1337`;
+const URL = HOST + `1337`;
 
-export function* getBoards(action) {
+export function* getTasks(action) {
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
-  const projectID = action.projectID;
+  const boardID = action.boardID;
   const requestData = {
     session: {
       id: sessionID,
       user: userID
     },
-    project:{
-      id: projectID
+    board:{
+      id: boardID
     }
   };
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "POST", requestData);
     if (response.code == 0) {
-      console.log("BoARDU OBJ");
-      response.data[0].tasks = [];
-      response.data[0].tasks[0]= {
-        id:"asdasdx",
-        name:"taskas1"
-      };
-      response.data[0].tasks[1]= {
-        id:"asdasd",
-        name:"taskas2"
-      };
-      response.data[1].tasks = [];
-      response.data[1].tasks[0]= {
-        id:"asdasdz",
-        name:"taskas3"
-      };
-      response.data[1].tasks[1]= {
-        id:"asdasdffz",
-        name:"taskas4"
-      };
-      console.log(response.data);
-      yield put(loadBoards(response.data));
+      yield put(loadTasks(response.data));
     }
   } catch (err) {
       yield put()
@@ -63,40 +42,11 @@ export function* getBoards(action) {
   return null;
 }
 
-export function* addBoardSaga(action) {
+export function* addTaskSaga(action) {
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
-  const projectID = action.projectID;
-  const requestData = {
-    session: {
-      id: sessionID,
-      user: userID
-    },
-    board:{
-      name: yield select(makeSelectName()),
-      description: yield select(makeSelectDescription()),
-      project: projectID
-  }
-  };
-  try {
-    // Call our request helper (see 'utils/request')
-    const response = yield call(request, requestURL, "PUT", requestData);
-    if (response.code == 0) {
-      yield getBoards(action);
-    }
-  } catch (err) {
-
-  }
-
-  return null;
-}
-
-export function* deleteBoardSaga(action) {
-  const requestURL = URL;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
-  const boardID= action.boardID;
+  const boardID = action.boardID;
   const requestData = {
     session: {
       id: sessionID,
@@ -108,20 +58,49 @@ export function* deleteBoardSaga(action) {
   };
   try {
     // Call our request helper (see 'utils/request')
+    console.log("ADD TASK SAGA");
+    const response = yield call(request, requestURL, "PUT", requestData);
+    if (response.code == 0) {
+      yield getTasks(action);
+    }
+  } catch (err) {
+
+  }
+
+  return null;
+}
+
+export function* deleteTaskSaga(action) {
+  const requestURL = URL;
+  const sessionID = sessionStorage.getItem(SESSIONID);
+  const userID = sessionStorage.getItem(USERID);
+  const taskID= action.taskID;
+  const requestData = {
+    session: {
+      id: sessionID,
+      user: userID
+    },
+    task:{
+      id: taskID
+  }
+  };
+  try {
+    // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "DELETE", requestData);
     if (response.code == 0) {
-      yield getBoards(action);
+      getTasks(action);
     }
   } catch (err) {
 
   }
   return null;
 }
+
 /**
  * Root saga manages watcher lifecycle
  */
-export default function* projectListInit() {
-  yield takeLatest(LOAD_BOARDS_REQUEST, getBoards);
-  yield takeLatest(ADD_BOARD_REQUEST, addBoardSaga);
-  yield takeLatest(DELETE_BOARD_REQUEST, deleteBoardSaga);
+export default function* taskListInit() {
+  yield takeLatest(DELETE_TASK_REQUEST, deleteTaskSaga);
+  yield takeLatest(ADD_TASK_REQUEST, addTaskSaga);
+  yield takeLatest(LOAD_TASKS_REQUEST, getTasks);
 }
