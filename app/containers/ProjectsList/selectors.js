@@ -23,10 +23,21 @@ const makeSelectDescription = () => createSelector(
   selectMain,
   (mainState) => mainState.get('description')
 );
+const makeSelectError = () => createSelector(
+  selectMain,
+  (mainState) => mainState.get('error')
+);
+const makeSelectSuccessText = () => createSelector(
+  selectMain,
+  (mainState) => mainState.get('successText')
+);
+
 
  export {
    selectMain,
    makeSelectProjects,
    makeSelectName,
    makeSelectDescription,
+   makeSelectError,
+   makeSelectSuccessText
  };

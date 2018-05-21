@@ -8,7 +8,7 @@ import request from 'utils/request';
 import {makeSelectPassword, makeSelectUsername} from './selectors';
 import {LOGIN, SIGN_UP_REDIRECT} from "./constants";
 import {SESSIONID,USERID, HOST } from "../App/constants";
-import { requestError, loginSuccess} from "./actions";
+import { requestError } from "./actions";
 import { push } from 'react-router-redux';
 import {REQUEST_RESPONSES} from "../App/constants";
 
@@ -30,7 +30,6 @@ export function* loginRequest() {
     {
       sessionStorage.setItem(SESSIONID, response.data.id);
       sessionStorage.setItem(USERID, response.data.user);
-      yield put(loginSuccess(response));
       yield put(push('/main'));
     }
     else

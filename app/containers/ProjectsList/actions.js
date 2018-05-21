@@ -7,6 +7,8 @@ import {
     CHANGE_DESCRIPTION,
     ADD_PROJECT_REQUEST,
     LOGOUT_REQUEST,
+    CREATE_SUCCESS,
+    REQUEST_ERROR
 } from './constants';
 
 /**
@@ -14,6 +16,20 @@ import {
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
+export function requestError(error) {
+  return {
+    type: REQUEST_ERROR,
+    error,
+  };
+}
+
+export function createSuccess(response) {
+  return {
+    type: CREATE_SUCCESS,
+    response,
+  };
+}
+
 export function changeName(name) {
   return {
     type: CHANGE_NAME,

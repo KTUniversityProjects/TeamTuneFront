@@ -17,6 +17,8 @@ import {
   LOAD_PROJECTS,
   CHANGE_NAME,
   CHANGE_DESCRIPTION,
+  REQUEST_ERROR,
+  CREATE_SUCCESS
 } from './constants';
 
 // The initial state of the App
@@ -24,10 +26,22 @@ const initialState = fromJS({
   projects: false,
   name: '',
   description: '',
+  successText: '',
 });
 
 function projectListReducer(state = initialState, action) {
   switch (action.type) {
+
+     case CREATE_SUCCESS:
+      return state.set('successText', 'Project created')
+                  .set('error', '');
+
+    //Any request error
+    case REQUEST_ERROR:
+      return state
+        .set('successText', '')
+        .set('error', action.error)
+        .set('loading', false);
 
     case LOAD_PROJECTS:
       return state

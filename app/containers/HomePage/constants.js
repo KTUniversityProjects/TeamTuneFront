@@ -14,5 +14,4 @@ export const CHANGE_PASSWORD = 'boilerplate/Home/CHANGE_PASSWORD';
 export const LOGIN = 'boilerplate/Login/LOGIN';
 export const REGISTER = 'boilerplate/SignUp/SIGNUP';
 export const SIGN_UP_REDIRECT = 'boilerplate/SignUp/SIGN_UP_REDIRECT';
-export const LOGIN_SUCCESS = 'boilerplate/SignUp/LOGIN_SUCCESS';
 export const REQUEST_ERROR = 'boilerplate/SignUp/REQUEST_ERROR';

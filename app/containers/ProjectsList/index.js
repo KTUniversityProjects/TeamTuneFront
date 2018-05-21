@@ -9,7 +9,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import {createStructuredSelector} from 'reselect';
-import { makeSelectProjects, makeSelectName, makeSelectDescription } from './selectors';
+import { makeSelectProjects, makeSelectName, makeSelectDescription,  makeSelectSuccessText, makeSelectError } from './selectors';
 
 import {loadProjectsRequest, deleteProjectRequest} from "./actions";
 import { changeName, changeDescription, addProjectRequest, logoutRequest } from './actions';
@@ -26,7 +26,12 @@ export class ProjectsList extends React.PureComponent {
   }
 
   render() {
-    const { projects, onDelete } = this.props;
+    const { projects, onDelete, error, successText } = this.props;
+    var contentMsg = null;
+    if (error || error != "")
+      contentMsg = error;
+    if (successText || successText != "")
+      contentMsg = successText;
     var content = (<div></div>);
     if (projects) {
         content = (
@@ -72,6 +77,9 @@ export class ProjectsList extends React.PureComponent {
             onClick={this.props.logout}
           />
         </div>
+        <div>
+        {contentMsg}
+        </div>
       </div>
       );
   }
@@ -89,6 +97,9 @@ ProjectsList.propTypes = {
   description: PropTypes.string,
   onChangeName: PropTypes.func,
   onChangeDescription: PropTypes.func,
+  error: PropTypes.string,
+  successText: PropTypes.string,
+  contentMsg: PropTypes.string,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -115,6 +126,8 @@ const mapStateToProps = createStructuredSelector({
   projects: makeSelectProjects(),
   name: makeSelectName(),
   description: makeSelectDescription(),
+  successText: makeSelectSuccessText(),
+  error: makeSelectError(),
 });
 
 

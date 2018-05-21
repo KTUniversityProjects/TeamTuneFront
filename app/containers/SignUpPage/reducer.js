@@ -29,13 +29,14 @@ const initialState = fromJS({
   password: '',
   passwordConfirm:'',
   email:'',
+  successText:'',
 });
 
 function signupReducer(state = initialState, action) {
 switch (action.type) {
     //Login request success
     case SIGNUP_SUCCESS:
-      return state.set('successText', 'Užsiregistruota sėkmingai');
+      return state.set('successText', 'Registration successful');
 
     //Any request error
     case REQUEST_ERROR:

@@ -34,13 +34,11 @@ import { Link } from 'react-router-dom';
 export class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
-    const {error, successText} = this.props;
+    const {error } = this.props;
     console.log(error);
     var content = null;
     if (error)
       content = error;
-    if (successText)
-      content = successText;
     return (
       <div>
         <Helmet>
@@ -94,7 +92,6 @@ HomePage.propTypes = {
   onChangeUsername: PropTypes.func,
   onChangePassword: PropTypes.func,
   onSignUpRedirect: PropTypes.func,
-  successText: PropTypes.string,
   content: PropTypes.string,
   error: PropTypes.string
 };
@@ -114,7 +111,6 @@ export function mapDispatchToProps(dispatch) {
 const mapStateToProps = createStructuredSelector({
   username: makeSelectUsername(),
   password: makeSelectPassword(),
-  successText: makeSelectSuccessText(),
   error: makeSelectError(),
 });
 
