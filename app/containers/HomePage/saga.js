@@ -6,10 +6,12 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import request from 'utils/request';
 import {makeSelectPassword, makeSelectUsername} from './selectors';
-import {LOGIN} from "./constants";
-import {SESSIONID,USERID, HOST} from "../App/constants";
-import { requestError} from "./actions";
+import {LOGIN, SIGN_UP_REDIRECT} from "./constants";
+import {SESSIONID,USERID, HOST } from "../App/constants";
+import { requestError, loginSuccess} from "./actions";
 import { push } from 'react-router-redux';
+import {REQUEST_RESPONSES} from "../App/constants";
+
 /**
  * Login request handler
  */
@@ -28,16 +30,21 @@ export function* loginRequest() {
     {
       sessionStorage.setItem(SESSIONID, response.data.id);
       sessionStorage.setItem(USERID, response.data.user);
-      
+      yield put(loginSuccess(response));
       yield put(push('/main'));
     }
     else
     {
-      //webservices/core/Responses.go
+       var error = REQUEST_RESPONSES[response.code];
+       yield put(requestError(error));
     }
   } catch (err) {
 
   }
+}
+
+export function* signUpRedirectSaga(){
+  yield put(push('/signup'));
 }
 
 /**
@@ -51,4 +58,5 @@ export default function* checkLoginState() {
       yield put(push('/main'));
   }
   yield takeLatest(LOGIN, loginRequest);
+  yield takeLatest(SIGN_UP_REDIRECT, signUpRedirectSaga);
 }

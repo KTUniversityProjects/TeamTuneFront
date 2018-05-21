@@ -16,3 +16,4 @@ export const CHANGE_EMAIL = 'boilerplate/Home/CHANGE_EMAIL';
 export const SIGNUP = 'boilerplate/SignUp/SIGNUP';
 export const SIGNUP_SUCCESS = 'boilerplate/App/SIGNUP_SUCCESS';
 export const REQUEST_ERROR = 'boilerplate/App/REQUEST_ERROR';
+export const LOGIN_REDIRECT = 'boilerplate/App/LOGIN_REDIRECT';

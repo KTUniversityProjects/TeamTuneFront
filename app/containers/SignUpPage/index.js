@@ -11,12 +11,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { signup } from './actions';
+import { signup, redirectLogin } from './actions';
 import { changeUsername } from './actions';
 import { changePassword } from './actions';
 import { changePasswordConfirm } from './actions';
 import { changeEmail } from './actions';
-import { makeSelectUsername } from './selectors';
+import { makeSelectUsername, makeSelectSuccessText, makeSelectError } from './selectors';
 import { makeSelectPassword } from './selectors';
 import { makeSelectPasswordConfirm } from './selectors';
 import { makeSelectEmail } from './selectors';
@@ -34,6 +34,12 @@ import Input from 'components/Input';
 export class SignUpPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
+    const {error, successText} = this.props;
+    var content = null;
+    if (error)
+      content = error;
+    if (successText)
+      content = successText;
     return (
       <div>
         <Helmet>
@@ -81,7 +87,16 @@ export class SignUpPage extends React.Component { // eslint-disable-line react/p
                     children="Sign up"
                     onClick={this.props.onSubmitForm}
                   />
+                  <Button
+                    id="login"
+                    type="submit"
+                    children="Log in"
+                    onClick={this.props.onLoginForm}
+                  />
               </Form>
+              <div>
+              {content}
+              </div>
               </CenteredSection>
       </div>
     );
@@ -98,6 +113,10 @@ SignUpPage.propTypes = {
   onChangePassword: PropTypes.func,
   onChangePasswordConfirm: PropTypes.func,
   onChangeEmail: PropTypes.func,
+  error: PropTypes.string,
+  successText: PropTypes.string,
+  content: PropTypes.string,
+  onLoginForm: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -110,6 +129,9 @@ export function mapDispatchToProps(dispatch) {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(signup());
     },
+    onLoginForm: (evt) => {
+      dispatch(redirectLogin());
+    },
   };
 }
 
@@ -118,6 +140,8 @@ const mapStateToProps = createStructuredSelector({
   password: makeSelectPassword(),
   passwordConfirm: makeSelectPasswordConfirm(),
   email: makeSelectEmail(),
+  successText: makeSelectSuccessText(),
+  error: makeSelectError(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

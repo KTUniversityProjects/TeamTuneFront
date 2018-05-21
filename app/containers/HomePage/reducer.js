@@ -14,6 +14,8 @@ import { fromJS } from 'immutable';
 import {
   CHANGE_PASSWORD,
   CHANGE_USERNAME,
+  REQUEST_ERROR,
+  LOGIN_SUCCESS,
 } from './constants';
 
 // The initial state of the App
@@ -24,14 +26,23 @@ const initialState = fromJS({
 
 function loginReducer(state = initialState, action) {
   switch (action.type) {
+
+    case LOGIN_SUCCESS:
+      return state.set('successText', 'Prisijungta sėkmingai');
+
+    //Any request error
+    case REQUEST_ERROR:
+    console.log("ERROR REQUESTED");
+      return state
+        .set('error', action.error)
+        .set('loading', false);
+
     case CHANGE_USERNAME:
-      // Delete prefied '@' from the github username
-
       return state.set('username', action.name);
-    case CHANGE_PASSWORD:
 
-      // Delete prefixed '@' from the github username
+    case CHANGE_PASSWORD:
       return state.set('password', action.name);
+
     default:
       return state;
   }

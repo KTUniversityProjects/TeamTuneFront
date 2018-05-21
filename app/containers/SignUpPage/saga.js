@@ -6,9 +6,10 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import request from 'utils/request';
 import {makeSelectPassword, makeSelectUsername, makeSelectPasswordConfirm, makeSelectEmail} from 'containers/SignUpPage/selectors';
-import {SIGNUP} from "./constants";
+import {SIGNUP, LOGIN_REDIRECT} from "./constants";
 import {signupSuccess, requestError} from "./actions";
-
+import {REQUEST_RESPONSES} from "../App/constants";
+import { push } from 'react-router-redux';
 import {HOST} from "../App/constants";
 
 /**
@@ -30,10 +31,22 @@ export function* signupRequest() {
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request,  requestURL, "PUT", requestData);
-    yield put(signupSuccess(response));
-  } catch (err) {
-    yield put(requestError(err));
+    if (response.code == 0)
+      yield put(signupSuccess(response));
+    else
+    {
+       var error = REQUEST_RESPONSES[response.code];
+       console.log(error);
+       yield put(requestError(error));
+    }
   }
+ catch (err) {
+    //yield put(requestError(err));
+  }
+}
+
+export function* loginRedirectSaga(){
+  yield put(push('/'));
 }
 
 /**
@@ -41,4 +54,5 @@ export function* signupRequest() {
  */
 export default function* checkSignupState() {
   yield takeLatest(SIGNUP, signupRequest);
+  yield takeLatest(LOGIN_REDIRECT, loginRedirectSaga);
 }

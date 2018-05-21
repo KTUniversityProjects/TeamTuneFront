@@ -35,8 +35,7 @@ function signupReducer(state = initialState, action) {
 switch (action.type) {
     //Login request success
     case SIGNUP_SUCCESS:
-      return state;
-
+      return state.set('successText', 'Užsiregistruota sėkmingai');
 
     //Any request error
     case REQUEST_ERROR:
