@@ -22,6 +22,14 @@ const makeSelectEmail = () => createSelector(
   selectSignup,
   (signupState) => signupState.get('email')
 );
+const makeSelectError = () => createSelector(
+  selectSignup,
+  (signupState) => signupState.get('error')
+);
+const makeSelectSuccessText = () => createSelector(
+  selectSignup,
+  (signupState) => signupState.get('successText')
+);
 
 export {
   selectSignup,
@@ -29,4 +37,6 @@ export {
   makeSelectPassword,
   makeSelectPasswordConfirm,
   makeSelectEmail,
+  makeSelectError,
+  makeSelectSuccessText
 };

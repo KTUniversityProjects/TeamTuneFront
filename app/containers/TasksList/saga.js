@@ -60,8 +60,9 @@ export function* addTaskSaga(action) {
   };
   try {
     // Call our request helper (see 'utils/request')
-    console.log("ADD TASK SAGA");
     const response = yield call(request, requestURL, "PUT", requestData);
+    console.log(response);
+    console.log("ADD TASK SAGA RESPONSE: ");
     console.log(response);
     if (response.code == 0) {
       yield getTasks(action);

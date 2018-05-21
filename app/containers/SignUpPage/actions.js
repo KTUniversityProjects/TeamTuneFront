@@ -5,6 +5,7 @@ import {
   CHANGE_EMAIL,
   REQUEST_ERROR,
   SIGNUP_SUCCESS,
+  LOGIN_REDIRECT
 } from './constants';
 
 import {SIGNUP} from "./constants";
@@ -64,6 +65,12 @@ export function signupSuccess(response) {
   return {
     type: SIGNUP_SUCCESS,
     response,
+  };
+}
+
+export function redirectLogin() {
+  return {
+    type: LOGIN_REDIRECT,
   };
 }
 

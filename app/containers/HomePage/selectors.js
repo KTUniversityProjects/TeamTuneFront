@@ -15,8 +15,20 @@ const makeSelectPassword = () => createSelector(
   (loginState) => loginState.get('password')
 );
 
+const makeSelectSuccessText = () => createSelector(
+  selectLogin,
+  (loginState) => loginState.get('successText')
+);
+
+const makeSelectError = () => createSelector(
+  selectLogin,
+  (loginState) => loginState.get('error')
+);
+
 export {
   selectLogin,
   makeSelectUsername,
   makeSelectPassword,
+  makeSelectError,
+  makeSelectSuccessText
 };

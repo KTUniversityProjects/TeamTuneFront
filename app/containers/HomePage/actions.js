@@ -3,6 +3,7 @@ import {
   CHANGE_PASSWORD,
   REQUEST_ERROR,
   LOGIN_SUCCESS,
+  SIGN_UP_REDIRECT
 } from './constants';
 import {LOGIN} from "./constants";
 
@@ -36,5 +37,25 @@ export function changeUsername(name) {
   return {
     type: CHANGE_USERNAME,
     name,
+  };
+}
+
+export function signUpRedirect() {
+  return {
+    type: SIGN_UP_REDIRECT,
+  };
+}
+
+export function loginSuccess(response) {
+  return {
+    type: LOGIN_SUCCESS,
+    response,
+  };
+}
+
+export function requestError(error) {
+  return {
+    type: REQUEST_ERROR,
+    error,
   };
 }

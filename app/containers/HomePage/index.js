@@ -14,11 +14,11 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { login } from './actions';
-import { signUp } from './actions';
+import { signUp, signUpRedirect} from './actions';
 import { changeUsername } from './actions';
 import { changePassword } from './actions';
-import { makeSelectUsername } from './selectors';
-import { makeSelectPassword } from './selectors';
+import { makeSelectUsername, makeSelectSuccessText} from './selectors';
+import { makeSelectPassword, makeSelectError } from './selectors';
 
 import reducer from './reducer';
 import saga from './saga';
@@ -34,6 +34,13 @@ import { Link } from 'react-router-dom';
 export class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
+    const {error, successText} = this.props;
+    console.log(error);
+    var content = null;
+    if (error)
+      content = error;
+    if (successText)
+      content = successText;
     return (
       <div>
         <Helmet>
@@ -65,11 +72,16 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
                   children="Login"
                   onClick={this.props.onSubmitForm}
                 />
-                <Link
-                  to="/signup"
+                <Button
+                  id="submit"
+                  type="submit"
                   children="Sign up"
+                  onClick={this.props.onSignUpRedirect}
                 />
             </Form>
+            <div>
+              {content}
+            </div>
           </CenteredSection>
       </div>
     );
@@ -81,6 +93,10 @@ HomePage.propTypes = {
   password: PropTypes.string,
   onChangeUsername: PropTypes.func,
   onChangePassword: PropTypes.func,
+  onSignUpRedirect: PropTypes.func,
+  successText: PropTypes.string,
+  content: PropTypes.string,
+  error: PropTypes.string
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -91,12 +107,15 @@ export function mapDispatchToProps(dispatch) {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(login());
     },
+    onSignUpRedirect: (evt) => dispatch(signUpRedirect()),
   };
 }
 
 const mapStateToProps = createStructuredSelector({
   username: makeSelectUsername(),
   password: makeSelectPassword(),
+  successText: makeSelectSuccessText(),
+  error: makeSelectError(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
