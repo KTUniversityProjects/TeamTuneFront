@@ -30,7 +30,7 @@ export function* getProjects() {
       yield put(loadProjects(response.data));
     }
   } catch (err) {
-      yield put()
+    console.log(err)
   }
 
   return null;
@@ -57,6 +57,7 @@ export function* deleteProjectSaga(action) {
       yield getProjects();
     }
   } catch (err) {
+    console.log(err)
   }
 
   return null;
@@ -83,7 +84,7 @@ export function* addProjectSaga(action) {
       yield getProjects();
     }
   } catch (err) {
-
+    console.log(err)
   }
 
   return null;

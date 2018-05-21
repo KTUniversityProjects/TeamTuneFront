@@ -36,7 +36,7 @@ export function* getTasks(action) {
       yield put(loadTasks(response.data));
     }
   } catch (err) {
-      yield put()
+    console.log(err)
   }
 
   return null;
@@ -64,7 +64,7 @@ export function* addTaskSaga(action) {
       yield getTasks(action);
     }
   } catch (err) {
-
+    console.log(err)
   }
 
   return null;
@@ -91,7 +91,7 @@ export function* deleteTaskSaga(action) {
       getTasks(action);
     }
   } catch (err) {
-
+    console.log(err)
   }
   return null;
 }

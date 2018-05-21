@@ -35,29 +35,11 @@ export function* getBoards(action) {
     const response = yield call(request, requestURL, "POST", requestData);
     if (response.code == 0) {
       console.log("BoARDU OBJ");
-      response.data[0].tasks = [];
-      response.data[0].tasks[0]= {
-        id:"asdasdx",
-        name:"taskas1"
-      };
-      response.data[0].tasks[1]= {
-        id:"asdasd",
-        name:"taskas2"
-      };
-      response.data[1].tasks = [];
-      response.data[1].tasks[0]= {
-        id:"asdasdz",
-        name:"taskas3"
-      };
-      response.data[1].tasks[1]= {
-        id:"asdasdffz",
-        name:"taskas4"
-      };
       console.log(response.data);
       yield put(loadBoards(response.data));
     }
   } catch (err) {
-      yield put()
+    console.log(err)
   }
 
   return null;
@@ -86,7 +68,7 @@ export function* addBoardSaga(action) {
       yield getBoards(action);
     }
   } catch (err) {
-
+    console.log(err)
   }
 
   return null;
@@ -113,7 +95,7 @@ export function* deleteBoardSaga(action) {
       yield getBoards(action);
     }
   } catch (err) {
-
+    console.log(err)
   }
   return null;
 }
