@@ -107,11 +107,3 @@ export default function* taskListInit() {
   yield takeLatest(ADD_TASK_REQUEST, addTaskSaga);
   yield takeLatest(LOAD_TASKS_REQUEST, getTasks);
 }
-
-project:{
-  "id":"lalala",
-  "users":[
-    "alalala@asdasd.lt",
-    "xxxx@xx.lt"
-  ]
-}
