@@ -33,11 +33,8 @@ export function* getBoards(action) {
 
   try {
     // Call our request helper (see 'utils/request')
-      console.log(request);
     const response = yield call(request, requestURL, "POST", requestData);
     if (response.code == 0) {
-      console.log("BOARDS");
-      console.log(response);
       yield put(loadBoards(response.data));
     }
   } catch (err) {

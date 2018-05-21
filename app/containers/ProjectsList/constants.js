@@ -9,12 +9,12 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_PROJECTS_REQUEST = 'boilerplate/App/LOAD_PROJECTS_REQUEST';
-export const LOAD_PROJECTS = 'boilerplate/App/LOAD_PROJECTS';
-export const DELETE_PROJECT_REQUEST = 'boilerplate/App/DELETE_PROJECT_REQUEST';
-export const CHANGE_NAME = 'boilerplate/App/CHANGE_NAME';
-export const CHANGE_DESCRIPTION = 'boilerplate/App/CHANGE_DESCRIPTION';
-export const ADD_PROJECT_REQUEST = 'boilerplate/App/ADD_PROJECT_REQUEST';
-export const LOGOUT_REQUEST = 'boilerplate/App/LOGOUT';
-export const CREATE_SUCCESS = 'boilerplate/App/SIGNUP_SUCCESS';
-export const REQUEST_ERROR = 'boilerplate/App/REQUEST_ERROR';
+export const LOAD_PROJECTS_REQUEST = 'boilerplate/ProjectList/LOAD_PROJECTS_REQUEST';
+export const LOAD_PROJECTS = 'boilerplate/ProjectList/LOAD_PROJECTS';
+export const DELETE_PROJECT_REQUEST = 'boilerplate/ProjectList/DELETE_PROJECT_REQUEST';
+export const CHANGE_NAME = 'boilerplate/ProjectList/CHANGE_NAME';
+export const CHANGE_DESCRIPTION = 'boilerplate/ProjectList/CHANGE_DESCRIPTION';
+export const ADD_PROJECT_REQUEST = 'boilerplate/ProjectList/ADD_PROJECT_REQUEST';
+export const LOGOUT_REQUEST = 'boilerplate/ProjectList/LOGOUT';
+export const CREATE_SUCCESS = 'boilerplate/ProjectList/SIGNUP_SUCCESS';
+export const REQUEST_ERROR = 'boilerplate/ProjectList/REQUEST_ERROR';

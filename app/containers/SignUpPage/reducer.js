@@ -20,8 +20,7 @@ import {
   SIGNUP_SUCCESS,
 } from './constants';
 
-import {SESSIONID,USERID
-} from '../App/constants';
+import {SESSIONID,USERID } from '../App/constants';
 
 // The initial state of the App
 const initialState = fromJS({

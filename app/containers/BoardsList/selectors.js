@@ -8,20 +8,20 @@
 
  import { createSelector } from 'reselect';
 
- const selectMain = (state) => state.get('boards');
+ const selectBoard = (state) => state.get('boards');
 
  const makeSelectBoards = () => createSelector(
-  selectMain,
-   (mainState) => mainState.get('boards')
+  selectBoard,
+   (boardState) => boardState.get('boards')
  );
 
  const makeSelectName = () => createSelector(
-  selectMain,
-  (mainState) => mainState.get('name')
+  selectBoard,
+  (boardState) => boardState.get('name')
 );
 const makeSelectDescription = () => createSelector(
-  selectMain,
-  (mainState) => mainState.get('description')
+  selectBoard,
+  (boardState) => boardState.get('description')
 );
 
  export {

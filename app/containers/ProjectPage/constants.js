@@ -9,6 +9,6 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
- export const LOAD_PROJECTS = 'boilerplate/App/LOAD_PROJECTS';
- export const LOAD_PROJECTS2 = 'boilerplate/App/LOAD_PROJECTS2';
+ export const LOAD_PROJECTS = 'boilerplate/ProjectPage/LOAD_PROJECTS';
+ export const LOAD_PROJECTS2 = 'boilerplate/ProjectPage/LOAD_PROJECTS2';
 export const DEFAULT_LOCALE = 'en';

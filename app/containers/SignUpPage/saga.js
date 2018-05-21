@@ -5,7 +5,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import request from 'utils/request';
-import {makeSelectPassword, makeSelectUsername, makeSelectPasswordConfirm, makeSelectEmail} from 'containers/SignUpPage/selectors';
+import {makeSelectPassword, makeSelectUsername, makeSelectPasswordConfirm, makeSelectEmail} from './selectors';
 import {SIGNUP, LOGIN_REDIRECT} from "./constants";
 import {signupSuccess, requestError} from "./actions";
 import {REQUEST_RESPONSES} from "../App/constants";

@@ -22,6 +22,8 @@ import {
 // The initial state of the App
 const initialState = fromJS({
   boards: false,
+  name: '',
+  description: '',
 });
 
 function boardsListReducer(state = initialState, action) {

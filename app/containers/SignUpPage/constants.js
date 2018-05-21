@@ -9,11 +9,11 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
-export const CHANGE_PASSWORD = 'boilerplate/Home/CHANGE_PASSWORD';
-export const CHANGE_PASSWORD_CONFIRM = 'boilerplate/Home/CHANGE_PASSWORD_CONFIRM';
-export const CHANGE_EMAIL = 'boilerplate/Home/CHANGE_EMAIL';
-export const SIGNUP = 'boilerplate/SignUp/SIGNUP';
-export const SIGNUP_SUCCESS = 'boilerplate/App/SIGNUP_SUCCESS';
-export const REQUEST_ERROR = 'boilerplate/App/REQUEST_ERROR';
-export const LOGIN_REDIRECT = 'boilerplate/App/LOGIN_REDIRECT';
+export const CHANGE_USERNAME = 'boilerplate/SignupPage/CHANGE_USERNAME';
+export const CHANGE_PASSWORD = 'boilerplate/SignupPage/CHANGE_PASSWORD';
+export const CHANGE_PASSWORD_CONFIRM = 'boilerplate/SignupPage/CHANGE_PASSWORD_CONFIRM';
+export const CHANGE_EMAIL = 'boilerplate/SignupPage/CHANGE_EMAIL';
+export const SIGNUP = 'boilerplate/SignupPage/SIGNUP';
+export const SIGNUP_SUCCESS = 'boilerplate/SignupPage/SIGNUP_SUCCESS';
+export const REQUEST_ERROR = 'boilerplate/SignupPage/REQUEST_ERROR';
+export const LOGIN_REDIRECT = 'boilerplate/SignupPage/LOGIN_REDIRECT';

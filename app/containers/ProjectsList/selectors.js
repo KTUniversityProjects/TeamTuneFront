@@ -8,28 +8,28 @@
 
  import { createSelector } from 'reselect';
 
- const selectMain = (state) => state.get('projects');
+ const selectProjectList = (state) => state.get('projects');
 
  const makeSelectProjects = () => createSelector(
-  selectMain,
-   (mainState) => mainState.get('projects')
+  selectProjectList,
+   (projectState) => projectState.get('projects')
  );
 
 const makeSelectName = () => createSelector(
-  selectMain,
-  (mainState) => mainState.get('name')
+  selectProjectList,
+  (projectState) => projectState.get('name')
 );
 const makeSelectDescription = () => createSelector(
-  selectMain,
-  (mainState) => mainState.get('description')
+  selectProjectList,
+  (projectState) => projectState.get('description')
 );
 const makeSelectError = () => createSelector(
-  selectMain,
-  (mainState) => mainState.get('error')
+  selectProjectList,
+  (projectState) => projectState.get('error')
 );
 const makeSelectSuccessText = () => createSelector(
-  selectMain,
-  (mainState) => mainState.get('successText')
+  selectProjectList,
+  (projectState) => projectState.get('successText')
 );
 
 

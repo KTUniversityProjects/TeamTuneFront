@@ -22,13 +22,6 @@ export class TasksList extends React.PureComponent {
     this.props.onPageLoad(this.props.boardID);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(this.props.boardID != nextProps.boardID)
-    {
-       this.props.onPageLoad(nextProps.boardID);
-    }
-  }
-
   render() {
     const { tasks, onDelete } = this.props;
     var content = (<div></div>);

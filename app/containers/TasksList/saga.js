@@ -16,6 +16,7 @@ import {loadTasks} from "./actions";
 const URL = HOST + `1341`;
 
 export function* getTasks(action) {
+  console.log("gettasks");
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
@@ -29,7 +30,6 @@ export function* getTasks(action) {
       id: boardID
     }
   };
-  console.log('tasks_get');
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "POST", requestData);
@@ -45,6 +45,8 @@ export function* getTasks(action) {
 }
 
 export function* addTaskSaga(action) {
+  console.log("addtask");
+  return;
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
@@ -75,6 +77,8 @@ export function* addTaskSaga(action) {
 }
 
 export function* deleteTaskSaga(action) {
+  console.log("delete");
+  return;
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
