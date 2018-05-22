@@ -6,8 +6,6 @@ import {call, put, takeLatest, select} from 'redux-saga/effects';
 
 import request from 'utils/request';
 import {SESSIONID, USERID, HOST, TRANSLATIONS} from "../App/constants";
-import {SESSIONID, USERID, HOST} from "../App/constants";
-import {SESSIONID, USERID, HOST} from "../App/constants";
 import {EDIT_TASK_REQUEST, EDIT_BOARD_REQUEST, LOAD_BOARDS_REQUEST, DELETE_BOARD_REQUEST, ADD_BOARD_REQUEST} from "./constants";
 import {makeSelectName, makeSelectDescription} from "./selectors";
 import {loadBoards} from "./actions";
