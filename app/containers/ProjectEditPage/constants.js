@@ -9,6 +9,7 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
- export const LOAD_PROJECTS = 'boilerplate/ProjectPage/LOAD_PROJECTS';
- export const LOAD_PROJECTS2 = 'boilerplate/ProjectPage/LOAD_PROJECTS2';
-export const DEFAULT_LOCALE = 'en';
+export const CHANGE_NAME = 'boilerplate/ProjectEditPage/CHANGE_NAME';
+export const CHANGE_DESCRIPTION = 'boilerplate/ProjectEditPage/CHANGE_DESCRIPTION';
+export const GET_PROJECT = 'boilerplate/ProjectEditPage/GET_PROJECT';
+export const LOAD_PROJECT = 'boilerplate/ProjectEditPage/LOAD_PROJECT';
