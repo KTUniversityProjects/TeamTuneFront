@@ -33,7 +33,7 @@ function projectListReducer(state = initialState, action) {
   switch (action.type) {
 
      case CREATE_SUCCESS:
-      return state.set('successText', 'Project created')
+      return state.set('description', '').set('name', '').set('successText', 'Project created')
                   .set('error', '');
 
     //Any request error

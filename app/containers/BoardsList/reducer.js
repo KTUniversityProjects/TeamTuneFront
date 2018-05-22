@@ -17,6 +17,7 @@ import {
   LOAD_BOARDS_REQUEST,
   CHANGE_NAME,
   CHANGE_DESCRIPTION,
+  CREATE_BOARD_SUCCESS
 } from './constants';
 import {
   LOADS_TASKS
@@ -31,8 +32,10 @@ const initialState = fromJS({
 
 function boardsListReducer(state = initialState, action) {
   switch (action.type) {
-
-  	case LOAD_BOARDS:
+    case CREATE_BOARD_SUCCESS:
+      return state
+        .set('description', '').set('name', '');
+    case LOAD_BOARDS:
       return state
         .set('boards', action.boards);
 
