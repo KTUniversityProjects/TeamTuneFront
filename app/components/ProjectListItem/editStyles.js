@@ -8,7 +8,7 @@ const buttonStyles = css`
   float:right;
   margin-right:5px;
   &:before {
-    content: "✐";
+    content: "✎";
   }
   &:hover {
     color: #6f8237;
