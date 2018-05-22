@@ -8,7 +8,7 @@ import request from 'utils/request';
 import {SESSIONID, USERID, HOST, TRANSLATIONS} from "../App/constants";
 import {EDIT_TASK_REQUEST, EDIT_BOARD_REQUEST, LOAD_BOARDS_REQUEST, DELETE_BOARD_REQUEST, ADD_BOARD_REQUEST} from "./constants";
 import {makeSelectName, makeSelectDescription} from "./selectors";
-import {loadBoards} from "./actions";
+import {loadBoards, createBoardSuccess} from "./actions";
 import {ADD_TASK_REQUEST, DELETE_TASK_REQUEST} from "../TasksList/constants";
 
 /**
@@ -67,6 +67,7 @@ export function* addBoardSaga(action) {
   try {
     const response = yield call(request, requestURL, "PUT", requestData);
     if (response.code == 0) {
+      yield put(createBoardSuccess());
       yield getBoards(action);
     }
   } catch (err) {

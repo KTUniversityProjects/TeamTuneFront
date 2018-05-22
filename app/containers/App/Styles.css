@@ -5,9 +5,10 @@
   left: 7px;
   top: 8px;
 }
-@media only screen and (max-width: 320px) {
-  .bm-menu-wrap{
-    width:100%;
+
+@media only screen and (max-width: 350px) {
+  .bm-menu-wrap {
+    width: 100% !important;
   }
 }
 
@@ -48,4 +49,36 @@
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+.bm-item-list .createButton {
+  font-size:30px;
+  padding:0;
+  line-height:35px;
+}
+
+.bm-item-list .logoutButton,
+.bm-item-list .createButton {
+  border: 2px solid #fff;
+  color: #fff;
+  width: 100%;
+}
+
+.bm-item-list input[type="text"],
+.bm-item-list textarea {
+  min-width: 250px;
+  width: 100%;
+}
+
+.bm-item-list .logoutButton:hover,
+.bm-item-list .createButton:hover {
+  border: 2px solid #00b4ff;
+  color: #00b4ff;
+}
+
+#app .projectMainBg {
+  height: calc(100vh - 35px);
+  background-color: #577a83;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  background-position: center;
 }

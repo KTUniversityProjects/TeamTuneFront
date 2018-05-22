@@ -9,7 +9,7 @@ import { slide as Menu } from 'react-burger-menu';
 
 import ProjectsList from '../../containers/ProjectsList';
 import injectSaga from '../../utils/injectSaga';
-import './Styles.css';
+import Background from './logo.png';
 
 import saga from './saga';
 
@@ -17,7 +17,7 @@ export class Main extends React.PureComponent {
 
   render() {
    return (
-      <div>
+      <div className="projectMainBg" style={{"background-image" : "url(" + Background + ")"}}>
       <Menu width={ 'auto' } menuClassName={ "teamtune-menu" }>
       <ProjectsList/>
       </Menu>

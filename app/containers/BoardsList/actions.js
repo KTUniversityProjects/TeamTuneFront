@@ -1,12 +1,13 @@
 import {
-    ADD_BOARD_REQUEST,
-    LOAD_BOARDS,
-    LOAD_BOARDS_REQUEST,
-    DELETE_BOARD_REQUEST,
-    CHANGE_NAME,
-    CHANGE_DESCRIPTION,
-    EDIT_BOARD_REQUEST,
-    EDIT_TASK_REQUEST
+  ADD_BOARD_REQUEST,
+  LOAD_BOARDS,
+  LOAD_BOARDS_REQUEST,
+  DELETE_BOARD_REQUEST,
+  CHANGE_NAME,
+  CHANGE_DESCRIPTION,
+  EDIT_BOARD_REQUEST,
+  EDIT_TASK_REQUEST,
+  CREATE_BOARD_SUCCESS
 } from './constants';
 
 
@@ -14,6 +15,12 @@ export function addBoardRequest(id) {
   return {
     type: ADD_BOARD_REQUEST,
     projectID: id
+  };
+}
+
+export function createBoardSuccess() {
+  return {
+    type: CREATE_BOARD_SUCCESS
   };
 }
 

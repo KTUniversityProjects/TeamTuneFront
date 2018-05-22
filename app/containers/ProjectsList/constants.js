@@ -18,3 +18,4 @@ export const ADD_PROJECT_REQUEST = 'boilerplate/ProjectList/ADD_PROJECT_REQUEST'
 export const LOGOUT_REQUEST = 'boilerplate/ProjectList/LOGOUT';
 export const CREATE_SUCCESS = 'boilerplate/ProjectList/SIGNUP_SUCCESS';
 export const REQUEST_ERROR = 'boilerplate/ProjectList/REQUEST_ERROR';
+export const CLEAR_PROJECT_FORM = 'boilerplate/ProjectList/CLEAR_PROJECT_FORM';

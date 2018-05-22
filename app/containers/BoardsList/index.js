@@ -10,14 +10,14 @@ import injectSaga from 'utils/injectSaga';
 
 import {createStructuredSelector} from 'reselect';
 import {makeSelectBoards} from "./selectors";
-import { makeSelectName } from './selectors';
-import { makeSelectDescription } from './selectors';
+import {makeSelectName} from './selectors';
+import {makeSelectDescription} from './selectors';
 
 import {loadBoardsRequest} from "./actions";
 import {deleteBoardRequest} from "./actions";
-import { changeName} from './actions';
-import { changeDescription } from './actions';
-import { addBoardRequest } from './actions';
+import {changeName} from './actions';
+import {changeDescription} from './actions';
+import {addBoardRequest} from './actions';
 
 import Board from '../../components/Board';
 import Button from 'components/Button';
@@ -32,61 +32,60 @@ export class BoardsList extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.projectID != nextProps.projectID)
-    {
-       this.props.onPageLoad(nextProps.projectID);
+    if (this.props.projectID != nextProps.projectID) {
+      this.props.onPageLoad(nextProps.projectID);
     }
   }
 
   render() {
-    const { boards, onDelete, onChange } = this.props;
+    const {boards, onDelete, onChange} = this.props;
     var content = (<div></div>);
     if (boards) {
       content = (
         <div>
           {boards.map(item => (
-            <Board key={item.id} item={item} projectID={this.props.projectID} onDeleteClick={onDelete.bind(null, item.id, this.props.projectID)}/>
+            <Board key={item.id} item={item} projectID={this.props.projectID}
+                   onDeleteClick={onDelete.bind(null, item.id, this.props.projectID)}/>
           ))}
         </div>
-        );
-    }
-      return (
-        <div>
-        {content}
-        <div className="boardBlock">
-        <div className="create">
-            <Form >
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Board name"
-                    className="newForm"
-                    value={this.props.name}
-                    onChange={this.props.onChangeName}
-                  /><br />
-                  <Input
-                    id="description"
-                    type="text"
-                    className="newForm"
-                    placeholder="Board description"
-                    value={this.props.description}
-                    onChange={this.props.onChangeDescription}
-                  /><br />
-                  <Button
-                    id="add"
-                    type="submit"
-                    className="newForm"
-                    class="submitButton"
-                    children="Add new board"
-                    onClick={this.props.onSubmitForm.bind(null, this.props.projectID)}
-                  />
-              </Form>
-          </div>
-        </div>
-          </div>
       );
     }
+    return (
+      <div>
+        {content}
+        <div className="boardBlock">
+          <div className="create">
+            <Form>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Board name"
+                className="newForm"
+                value={this.props.name}
+                onChange={this.props.onChangeName}
+              /><br/>
+              <textarea
+                id="description"
+                className="newForm"
+                placeholder="Board description"
+                value={this.props.description}
+                onChange={this.props.onChangeDescription}
+              /><br/>
+              <Button
+                id="add"
+                type="submit"
+                className="newForm"
+                class="submitButton"
+                children="Add new board"
+                onClick={this.props.onSubmitForm.bind(null, this.props.projectID)}
+              />
+            </Form>
+          </div>
+        </div>
+      </div>
+    );
   }
+}
 
 BoardsList.propTypes = {
   boards: PropTypes.oneOfType([
