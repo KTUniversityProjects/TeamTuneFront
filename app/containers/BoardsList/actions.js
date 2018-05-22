@@ -5,7 +5,8 @@ import {
     DELETE_BOARD_REQUEST,
     CHANGE_NAME,
     CHANGE_DESCRIPTION,
-    EDIT_BOARD_REQUEST
+    EDIT_BOARD_REQUEST,
+    EDIT_TASK_REQUEST
 } from './constants';
 
 
@@ -19,6 +20,14 @@ export function addBoardRequest(id) {
 export function editBoardRequest(data, itemID) {
   return {
     type: EDIT_BOARD_REQUEST,
+    data: data,
+    id: itemID
+  };
+}
+
+export function editTaskRequest(data, itemID) {
+  return {
+    type: EDIT_TASK_REQUEST,
     data: data,
     id: itemID
   };

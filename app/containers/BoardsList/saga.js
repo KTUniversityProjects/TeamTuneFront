@@ -6,7 +6,7 @@ import {call, put, takeLatest, select} from 'redux-saga/effects';
 
 import request from 'utils/request';
 import {SESSIONID, USERID, HOST} from "../App/constants";
-import {EDIT_BOARD_REQUEST, LOAD_BOARDS_REQUEST, DELETE_BOARD_REQUEST, ADD_BOARD_REQUEST} from "./constants";
+import {EDIT_TASK_REQUEST, EDIT_BOARD_REQUEST, LOAD_BOARDS_REQUEST, DELETE_BOARD_REQUEST, ADD_BOARD_REQUEST} from "./constants";
 import {makeSelectName, makeSelectDescription} from "./selectors";
 import {loadBoards} from "./actions";
 import {loadTasks} from "../TasksList/actions";
@@ -20,6 +20,8 @@ import {ADD_TASK_REQUEST, DELETE_TASK_REQUEST, LOAD_TASKS_REQUEST} from "../Task
  const URL2 = HOST + `1341`;
 
 export function* getBoards(action) {
+  console.log("GetboARDS");
+  console.log(action);
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
@@ -64,9 +66,6 @@ export function* addBoardSaga(action) {
   }
   };
   try {
-    console.log("GET BOARDS RESPONSE");
-    console.log(response);
-    console.log("-----------");
     const response = yield call(request, requestURL, "PUT", requestData);
     if (response.code == 0) {
       yield getBoards(action);
@@ -121,7 +120,6 @@ export function* addTaskSaga(action) {
   try {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "PUT", requestData);
-    console.log("ADD TASK SAGA RESPONSE: ");
     if (response.code == 0) {
       yield getBoards(action);
     }
@@ -157,6 +155,7 @@ export function* deleteTaskSaga(action) {
   }
   return null;
 }
+
 export function* editBoardSaga(action){
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
@@ -175,9 +174,36 @@ export function* editBoardSaga(action){
   };
   try {
     const response = yield call(request, requestURL, "PATCH", requestData);
-    console.log("EDIT");
-    console.log(response);
     if (response.code == 0) {
+      yield getBoards(action);
+    }
+  } catch (err) {
+    console.log(err)
+  }
+
+  return null;
+}
+
+export function* editTaskSaga(action){
+  const requestURL = URL2;
+  const sessionID = sessionStorage.getItem(SESSIONID);
+  const userID = sessionStorage.getItem(USERID);
+  const taskID = action.id;
+  const taskName = action.data.message;
+  const requestData = {
+    session: {
+      id: sessionID,
+      user: userID
+    },
+    task:{
+      id: taskID,
+      name: taskName
+  }
+  };
+  try {
+    const response = yield call(request, requestURL, "PATCH", requestData);
+    if (response.code == 0) {
+      console.log(response);
       yield getBoards(action);
     }
   } catch (err) {
@@ -197,4 +223,5 @@ export default function* projectListInit() {
   yield takeLatest(DELETE_TASK_REQUEST, deleteTaskSaga);
   yield takeLatest(ADD_TASK_REQUEST, addTaskSaga);
   yield takeLatest(EDIT_BOARD_REQUEST, editBoardSaga);
+  yield takeLatest(EDIT_TASK_REQUEST, editTaskSaga);
 }
