@@ -23,7 +23,7 @@ import AboutPage from 'containers/AboutPage/Loadable';
 import Main from 'containers/Main/Loadable';
 import ProjectPage from 'containers/ProjectPage/Loadable';
 import Header from 'components/Header';
-import './Styles.css';
+import ProjectEditPage from 'containers/ProjectEditPage/Loadable';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
