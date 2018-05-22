@@ -42,6 +42,12 @@
       text-transform: none;
     }
 
+    .boardBlock > div.tasks div.title input{
+      padding:4px;
+      border:1px solid white;
+      border-radius:3px;
+    }
+
     .boardBlock > div.title{
       font-weight:bold;
       cursor: text;
