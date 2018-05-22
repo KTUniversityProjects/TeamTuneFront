@@ -5,6 +5,11 @@
   left: 7px;
   top: 8px;
 }
+@media only screen and (max-width: 320px) {
+  .bm-menu-wrap{
+    width:100%;
+  }
+}
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {

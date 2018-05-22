@@ -1,6 +1,11 @@
 .teamtune-menu{
   background:#1d2844 !important;
 }
+@media only screen and (max-width: 320px) {
+    .bm-menu-wrap{
+      width:100%;
+    }
+}
 
 .bm-burger-button {
   position: fixed;
