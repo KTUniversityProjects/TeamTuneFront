@@ -26,7 +26,7 @@ export class Board extends React.PureComponent { // eslint-disable-line react/pr
     return (
       <div className="boardBlock">
         <div className="title">
-          <font color="darkgray"><center><u><b><InlineEdit
+          <InlineEdit
               activeClassName="editing"
               text={item.name}
               paramName="message"
@@ -35,9 +35,9 @@ export class Board extends React.PureComponent { // eslint-disable-line react/pr
           project-id={item.id}
           children="Delete"
           onClick={this.props.onDeleteClick}
-        /></b></u></center></font>
+        />
         </div>
-        <div>
+        <div className="tasks">
         <TasksList boardID={item.id} tasks={item.tasks} projectID={this.props.projectID}/>
         </div>
         </div>

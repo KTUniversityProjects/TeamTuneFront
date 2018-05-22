@@ -31,4 +31,7 @@ export const REQUEST_RESPONSES = {
 	264 : "The are some unallowed characters in your password. Please try a different one.",
 	280 : "Wrong project ID, board doesn't exit"
 };
-console.log(REQUEST_RESPONSES[200]);
+
+export const TRANSLATIONS = {
+  delete_are_u_sure: "Are u sure?"
+};

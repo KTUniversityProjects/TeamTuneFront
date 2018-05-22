@@ -1,3 +1,18 @@
 div.title {
     text-transform: uppercase;
 }
+
+.boardBlock > .tasks .newForm,
+.boardBlock > .create a.newForm{
+  border:2px solid white;
+  color:white;
+}
+
+.boardBlock > .tasks .newForm:hover,
+.boardBlock > .create a.newForm:hover{
+  border:2px solid #00b4ff;
+  color:#00b4ff;
+}
+.boardBlock > .create input.newForm{
+  width:100%;
+}

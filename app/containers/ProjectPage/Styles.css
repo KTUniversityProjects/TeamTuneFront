@@ -5,6 +5,11 @@
   left: 7px;
   top: 8px;
 }
+@media only screen and (max-width: 320px) {
+  .bm-menu-wrap{
+    width:100%;
+  }
+}
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
@@ -25,7 +30,7 @@
 
 /* General sidebar styles */
 .bm-menu {
-  background: #373a47;
+  background: #203b46;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }

@@ -4,13 +4,13 @@ const buttonStyles = css`
   cursor: pointer;
   font-weight: bold;
   font-size: 20px;
-  color: #ff0000;
+  color: #bd1111;
   float:right;
   &:before {
     content: "✖";
   }
   &:hover {
-    color: #b40000;
+    color: #ff0000;
   }
 `;
 
