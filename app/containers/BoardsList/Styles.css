@@ -24,14 +24,26 @@
     padding: 10px;
 }
 
-.boardBlock > div{
-    cursor:pointer;
-    background-color: #EEE8AA;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 5px;
-    transition: 0.3s;
-    padding: 10px;
-}
+    .boardBlock > div{
+      cursor:pointer;
+      background-color: #16434e;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      color:white;
+      transition: 0.3s;
+      padding: 10px;
+    }
+
+    .boardBlock > div.tasks{
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
+    .boardBlock > div.title{
+      font-weight:bold;
+      text-align:center;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
 
 .boardBlock > div:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);

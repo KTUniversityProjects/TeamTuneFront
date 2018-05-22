@@ -54,7 +54,7 @@ export class BoardsList extends React.PureComponent {
         <div>
         {content}
         <div className="boardBlock">
-        <div>
+        <div className="create">
             <Form >
                   <Input
                     id="name"
