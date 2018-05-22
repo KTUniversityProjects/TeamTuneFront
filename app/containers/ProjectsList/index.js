@@ -63,7 +63,7 @@ export class ProjectsList extends React.PureComponent {
             /><br />
 
             <Button
-              className="submitButton"
+              className="createButton"
               type="submit"
               children="+"
               onClick={this.props.onSubmitForm}
@@ -71,7 +71,7 @@ export class ProjectsList extends React.PureComponent {
           </Form>
 
           <Button
-            className="submitButton"
+            className="logoutButton"
             type="submit"
             children="Logout"
             onClick={this.props.logout}

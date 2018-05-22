@@ -38,6 +38,10 @@
       border-bottom-left-radius: 5px;
     }
 
+    .boardBlock > div.tasks div.title{
+      text-transform: none;
+    }
+
     .boardBlock > div.title{
       font-weight:bold;
       cursor: text;

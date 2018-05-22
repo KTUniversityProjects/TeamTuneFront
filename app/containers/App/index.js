@@ -24,6 +24,7 @@ import Main from 'containers/Main/Loadable';
 import ProjectPage from 'containers/ProjectPage/Loadable';
 import Header from 'components/Header';
 import ProjectEditPage from 'containers/ProjectEditPage/Loadable';
+import 'Styles.css';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -49,6 +50,7 @@ export default function App() {
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/main" component={Main} />
         <Route exact path="/project" component={ProjectPage} />
+        <Route exact path="/projectedit" component={ProjectEditPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       </div>
