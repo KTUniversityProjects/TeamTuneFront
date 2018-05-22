@@ -6,7 +6,7 @@ import {call, put, takeLatest, select} from 'redux-saga/effects';
 
 import request from 'utils/request';
 import {SESSIONID, USERID, HOST} from "../App/constants";
-import {LOAD_BOARDS_REQUEST, DELETE_BOARD_REQUEST, ADD_BOARD_REQUEST} from "./constants";
+import {EDIT_BOARD_REQUEST, LOAD_BOARDS_REQUEST, DELETE_BOARD_REQUEST, ADD_BOARD_REQUEST} from "./constants";
 import {makeSelectName, makeSelectDescription} from "./selectors";
 import {loadBoards} from "./actions";
 import {loadTasks} from "../TasksList/actions";
@@ -17,7 +17,7 @@ import {ADD_TASK_REQUEST, DELETE_TASK_REQUEST, LOAD_TASKS_REQUEST} from "../Task
  */
 
  const URL = HOST + `1337`;
-const URL2 = HOST + `1341`;
+ const URL2 = HOST + `1341`;
 
 export function* getBoards(action) {
   const requestURL = URL;
@@ -64,7 +64,9 @@ export function* addBoardSaga(action) {
   }
   };
   try {
-    // Call our request helper (see 'utils/request')
+    console.log("GET BOARDS RESPONSE");
+    console.log(response);
+    console.log("-----------");
     const response = yield call(request, requestURL, "PUT", requestData);
     if (response.code == 0) {
       yield getBoards(action);
@@ -148,11 +150,40 @@ export function* deleteTaskSaga(action) {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "DELETE", requestData);
     if (response.code == 0) {
-      getBoards(action);
+      yield getBoards(action);
     }
   } catch (err) {
     console.log(err)
   }
+  return null;
+}
+export function* editBoardSaga(action){
+  const requestURL = URL;
+  const sessionID = sessionStorage.getItem(SESSIONID);
+  const userID = sessionStorage.getItem(USERID);
+  const boardID = action.id;
+  const boardName = action.data.message;
+  const requestData = {
+    session: {
+      id: sessionID,
+      user: userID
+    },
+    board:{
+      id: boardID,
+      name: boardName
+  }
+  };
+  try {
+    const response = yield call(request, requestURL, "PATCH", requestData);
+    console.log("EDIT");
+    console.log(response);
+    if (response.code == 0) {
+      yield getBoards(action);
+    }
+  } catch (err) {
+    console.log(err)
+  }
+
   return null;
 }
 
@@ -165,4 +196,5 @@ export default function* projectListInit() {
   yield takeLatest(DELETE_BOARD_REQUEST, deleteBoardSaga);
   yield takeLatest(DELETE_TASK_REQUEST, deleteTaskSaga);
   yield takeLatest(ADD_TASK_REQUEST, addTaskSaga);
+  yield takeLatest(EDIT_BOARD_REQUEST, editBoardSaga);
 }

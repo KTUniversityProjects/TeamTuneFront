@@ -39,7 +39,7 @@ export class BoardsList extends React.PureComponent {
   }
 
   render() {
-    const { boards, onDelete } = this.props;
+    const { boards, onDelete, onChange } = this.props;
     var content = (<div></div>);
     if (boards) {
       content = (
@@ -94,6 +94,7 @@ BoardsList.propTypes = {
     PropTypes.bool,
   ]),
   onDelete: PropTypes.func,
+  onChange: PropTypes.func,
   projectID: PropTypes.string,
   onSubmitForm: PropTypes.func,
   name: PropTypes.string,
@@ -109,6 +110,13 @@ export function mapDispatchToProps(dispatch) {
     },
     onDelete: (boardID, projectID) => {
       dispatch(deleteBoardRequest(boardID, projectID));
+    },
+    onChange: (itemID, paramName) => {
+      console.log("CHANING. ITEMID: ");
+      console.log(itemID);
+      console.log("PARAM NAME");
+      console.log(paramName);
+
     },
     onChangeName: (evt) => dispatch(changeName(evt.target.value)),
     onChangeDescription: (evt) => dispatch(changeDescription(evt.target.value)),

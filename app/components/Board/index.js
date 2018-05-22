@@ -7,18 +7,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {connect} from 'react-redux';
+
+import {createStructuredSelector} from 'reselect';
+
+import {editBoardRequest} from "../../containers/BoardsList/actions";
 import DeleteButton from './DeleteButton';
 import './styles.css';
 import TasksList from '../../containers/TasksList';
+import InlineEdit from 'react-edit-inline';
+import {compose} from 'redux';
 
 
-export default class Board extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class Board extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
   render() {
     const item = this.props.item;
     return (
       <div className="boardBlock">
         <div className="title">
-          <font color="darkgray"><center><u><b>{item.name}<DeleteButton
+          <font color="darkgray"><center><u><b><InlineEdit
+              activeClassName="editing"
+              text={item.name}
+              paramName="message"
+              change={this.props.changeText.bind(this, item.id)}
+            /><DeleteButton
           project-id={item.id}
           children="Delete"
           onClick={this.props.onDeleteClick}
@@ -31,8 +44,27 @@ export default class Board extends React.PureComponent { // eslint-disable-line 
     );
   }
 }
+
 Board.propTypes = {
   item: PropTypes.object,
   projectID: PropTypes.string,
   onDeleteClick: PropTypes.func,
+  changeText: PropTypes.func
 };
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    changeText: (itemID, data) => {
+       dispatch(editBoardRequest(data, itemID));
+    },
+  };
+}
+
+const mapStateToProps = createStructuredSelector({
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(
+  withConnect,
+  )(Board);
