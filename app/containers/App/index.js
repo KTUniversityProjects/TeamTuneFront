@@ -15,7 +15,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import Sidebar from 'react-sidebar';
 
 import HomePage from 'containers/HomePage/Loadable';
 import SignUpPage from 'containers/SignUpPage/Loadable';
@@ -24,7 +23,7 @@ import AboutPage from 'containers/AboutPage/Loadable';
 import Main from 'containers/Main/Loadable';
 import ProjectPage from 'containers/ProjectPage/Loadable';
 import Header from 'components/Header';
-import ProjectsList from 'containers/ProjectsList';
+import './Styles.css';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -34,7 +33,7 @@ const AppWrapper = styled.div`
 `;
 
 export default function App() {
-  return (    
+  return (
     <AppWrapper>
       <Helmet
         titleTemplate="TeamTune"

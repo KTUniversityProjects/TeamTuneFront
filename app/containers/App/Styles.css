@@ -1,18 +1,14 @@
-.teamtune-menu{
-  background:#1d2844 !important;
-}
-@media only screen and (max-width: 320px) {
-    .bm-menu-wrap{
-      width:100%;
-    }
-}
-
 .bm-burger-button {
   position: fixed;
   width: 20px;
   height: 17px;
   left: 7px;
   top: 8px;
+}
+@media only screen and (max-width: 320px) {
+  .bm-menu-wrap{
+    width:100%;
+  }
 }
 
 /* Color/shape of burger icon bars */
@@ -22,7 +18,9 @@
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  display:none;
+  position: fixed;
+  height: 24px;
+  width: 24px;
 }
 
 /* Color/shape of close button cross */
@@ -50,4 +48,12 @@
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+#app .projectMainBg{
+  height: calc(100vh - 35px);
+  background-color: #577a83;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  background-position: center;
 }

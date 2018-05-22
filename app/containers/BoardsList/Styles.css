@@ -40,10 +40,23 @@
 
     .boardBlock > div.title{
       font-weight:bold;
+      cursor: text;
       text-align:center;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
     }
+    .boardBlock .create input{
+      border: 2px solid #00b4ff;
+    }
+    .boardBlock > div.title input{
+      border: 2px solid white;
+      padding: 7px;
+      border-radius:4px;
+    }
+    .boardBlock .create{
+      border-radius: 5px;
+    }
+
 
 .boardBlock > div:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
