@@ -8,11 +8,13 @@ div.title {
   color:white;
 }
 
+
 .boardBlock > .tasks .newForm:hover,
 .boardBlock > .create a.newForm:hover{
   border:2px solid #00b4ff;
   color:#00b4ff;
 }
-.boardBlock > .create input.newForm{
+.boardBlock > .create input.newForm,
+.boardBlock > .create textarea.newForm{
   width:100%;
 }
