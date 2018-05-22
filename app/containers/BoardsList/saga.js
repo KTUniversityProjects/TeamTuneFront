@@ -5,12 +5,11 @@
 import {call, put, takeLatest, select} from 'redux-saga/effects';
 
 import request from 'utils/request';
-import {SESSIONID, USERID, HOST} from "../App/constants";
+import {SESSIONID, USERID, HOST, TRANSLATIONS} from "../App/constants";
 import {EDIT_BOARD_REQUEST, LOAD_BOARDS_REQUEST, DELETE_BOARD_REQUEST, ADD_BOARD_REQUEST} from "./constants";
 import {makeSelectName, makeSelectDescription} from "./selectors";
 import {loadBoards} from "./actions";
-import {loadTasks} from "../TasksList/actions";
-import {ADD_TASK_REQUEST, DELETE_TASK_REQUEST, LOAD_TASKS_REQUEST} from "../TasksList/constants";
+import {ADD_TASK_REQUEST, DELETE_TASK_REQUEST} from "../TasksList/constants";
 
 /**
  * Github repos request/response handler
@@ -79,6 +78,10 @@ export function* addBoardSaga(action) {
 }
 
 export function* deleteBoardSaga(action) {
+  if(!confirm(TRANSLATIONS.delete_are_u_sure))
+  {
+    return;
+  }
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
@@ -133,6 +136,10 @@ export function* addTaskSaga(action) {
 }
 
 export function* deleteTaskSaga(action) {
+  if(!confirm(TRANSLATIONS.delete_are_u_sure))
+  {
+    return;
+  }
   const requestURL = URL2;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
@@ -175,8 +182,6 @@ export function* editBoardSaga(action){
   };
   try {
     const response = yield call(request, requestURL, "PATCH", requestData);
-    console.log("EDIT");
-    console.log(response);
     if (response.code == 0) {
       yield getBoards(action);
     }
