@@ -25,10 +25,21 @@ const makeSelectUser = () => createSelector(
   (editPageState) => editPageState.get('user')
 );
 
+const makeSelectError = () => createSelector(
+  selectEditPage,
+  (editPageState) => editPageState.get('error')
+);
+const makeSelectSuccessText = () => createSelector(
+  selectEditPage,
+  (editPageState) => editPageState.get('successText')
+);
+
 export {
   selectEditPage,
   makeSelectName,
   makeSelectDescription,
   makeSelectProject,
-  makeSelectUser
+  makeSelectUser,
+  makeSelectError,
+  makeSelectSuccessText
 };

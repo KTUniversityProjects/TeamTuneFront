@@ -14,7 +14,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import {createStructuredSelector} from 'reselect';
-import { makeSelectName, makeSelectDescription, makeSelectProject, makeSelectUser } from './selectors';
+import { makeSelectSuccessText, makeSelectError, makeSelectName, makeSelectDescription, makeSelectProject, makeSelectUser } from './selectors';
 
 import {getProject, saveProject, changeName, changeDescription, changeUser, addUser} from "./actions";
 
@@ -30,6 +30,7 @@ import CenteredSection from '../SignUpPage/CenteredSection';
 class ProjectEditPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
+    this.setState({successText: ''});
     console.log(this.state.projectID);
     this.props.onPageLoad(this.state.projectID);
   }
@@ -51,7 +52,12 @@ class ProjectEditPage extends React.PureComponent { // eslint-disable-line react
   }
 
   render() {
-    const { project } = this.props;
+    const { project, error, successText } = this.props;
+    var content = null;
+    if (error)
+      content = error;
+    if (successText)
+      content = successText;
     return (
       <div>
         <Menu isOpen={false} width={'auto'}>
@@ -96,6 +102,9 @@ class ProjectEditPage extends React.PureComponent { // eslint-disable-line react
                     onClick={this.props.onAddUser.bind(null, project.id)}
                   /><br />
               </Form>
+              <div>
+              {content}
+              </div>
               </CenteredSection>
         </div>
       </div>
@@ -114,7 +123,10 @@ ProjectEditPage.propTypes = {
   description: PropTypes.string,
   onSaveForm: PropTypes.func,
   onAddUser: PropTypes.func,
-  user: PropTypes.string
+  user: PropTypes.string,
+  error: PropTypes.string,
+  successText: PropTypes.string,
+  content: PropTypes.string,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -139,6 +151,8 @@ const mapStateToProps = createStructuredSelector({
   description: makeSelectDescription(),
   project: makeSelectProject(),
   user: makeSelectUser(),
+  successText: makeSelectSuccessText(),
+  error: makeSelectError(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

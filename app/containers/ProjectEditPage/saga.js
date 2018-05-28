@@ -5,7 +5,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import request from 'utils/request';
-import {loadProject} from "./actions";
+import {loadProject, signupSuccess, requestError} from "./actions";
 import {SESSIONID, USERID, HOST} from "../App/constants";
 import {GET_PROJECT, SAVE_PROJECT, ADD_USER} from "./constants";
 import {makeSelectDescription, makeSelectName, makeSelectUser} from './selectors';
@@ -112,7 +112,13 @@ export function* addUserSaga(action) {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "PATCH", requestData);
     if (response.code == 0) {
-
+        yield put(signupSuccess(response));
+    }
+    else
+    {
+      var error = REQUEST_RESPONSES[response.code];
+       console.log(error);
+       yield put(requestError(error));
     }
   } catch (err) {
       console.log(err)

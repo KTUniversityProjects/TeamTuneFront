@@ -7,7 +7,8 @@ import {
   REQUEST_ERROR,
   SAVE_SUCCESS,
   CHANGE_USER,
-  ADD_USER
+  ADD_USER,
+  SIGNUP_SUCCESS,
 } from './constants';
 
  export function changeName(name) {
@@ -28,6 +29,13 @@ export function changeUser(name) {
   return {
     type: CHANGE_USER,
     name,
+  };
+}
+
+export function signupSuccess(response) {
+  return {
+    type: SIGNUP_SUCCESS,
+    response,
   };
 }
 

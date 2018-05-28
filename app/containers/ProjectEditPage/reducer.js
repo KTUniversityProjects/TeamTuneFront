@@ -15,7 +15,9 @@ import {
   CHANGE_NAME,
   CHANGE_DESCRIPTION,
   LOAD_PROJECT,
-  CHANGE_USER
+  CHANGE_USER,
+  REQUEST_ERROR,
+  SIGNUP_SUCCESS,
 } from './constants';
 
 // The initial state of the App
@@ -24,6 +26,7 @@ const initialState = fromJS({
   description: '',
   project: false,
   email:'',
+  successText:'',
 });
 
 function editPageReducer(state = initialState, action) {
@@ -33,6 +36,15 @@ function editPageReducer(state = initialState, action) {
         .set('project', action.project)
         .set('name', action.project.name)
         .set('description', action.project.description);
+
+    case SIGNUP_SUCCESS:
+      return state.set('successText', 'User added');
+
+    //Any request error
+    case REQUEST_ERROR:
+      return state
+        .set('error', action.error)
+        .set('loading', false);
 
     case CHANGE_NAME:
       return state.set('name', action.name);
