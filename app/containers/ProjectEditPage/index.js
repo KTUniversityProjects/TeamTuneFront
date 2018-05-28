@@ -14,9 +14,9 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import {createStructuredSelector} from 'reselect';
-import { makeSelectName, makeSelectDescription, makeSelectProject } from './selectors';
+import { makeSelectName, makeSelectDescription, makeSelectProject, makeSelectUser } from './selectors';
 
-import {getProject, saveProject, changeName, changeDescription} from "./actions";
+import {getProject, saveProject, changeName, changeDescription, onChangeUser, addUser} from "./actions";
 
 import {slide as Menu} from 'react-burger-menu';
 import ProjectsList from 'containers/ProjectsList';
@@ -30,6 +30,7 @@ import CenteredSection from '../SignUpPage/CenteredSection';
 class ProjectEditPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   
   componentDidMount() {
+    console.log("COMPONENT DID MOUNT ACTIVATED");
     this.props.onPageLoad(this.state.projectID);
   }
 
@@ -42,7 +43,11 @@ class ProjectEditPage extends React.PureComponent { // eslint-disable-line react
   componentWillReceiveProps(nextProps) {
     const params = new URLSearchParams(nextProps.location.search);
     const ID = params.get('id');
-    this.setState({projectID: ID});
+    const prevID = this.state.projectID;
+    if (ID != prevID){
+      this.setState({projectID: ID});
+      this.props.onPageLoad(ID);
+    }
   }
 
   render() {
@@ -54,6 +59,7 @@ class ProjectEditPage extends React.PureComponent { // eslint-disable-line react
         </Menu>
         <div>
           <CenteredSection>
+          <p className="title no-margin-top">Edit your project</p>
           <Form onSubmit={this.props.onSubmitForm}>
                   <Input
                     id="name"
@@ -75,6 +81,20 @@ class ProjectEditPage extends React.PureComponent { // eslint-disable-line react
                     children="Save"
                     onClick={this.props.onSaveForm.bind(null, project.id)}
                   />
+                  <p className="title">Add new users to your project</p>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Enter user e-mail adress"
+                    value={this.props.user}
+                    onChange={this.props.onChangeUser}
+                  />
+                   <Button
+                    id="submit"
+                    type="submit"
+                    children="Add user"
+                    onClick={this.props.onAddUser.bind(null, project.id)}
+                  /><br />
               </Form>
               </CenteredSection>
         </div>
@@ -92,7 +112,9 @@ ProjectEditPage.propTypes = {
   onPageLoad: PropTypes.func,
   name: PropTypes.string,
   description: PropTypes.string,
-  onSaveForm: PropTypes.func
+  onSaveForm: PropTypes.func,
+  onAddUser: PropTypes.func,
+  user: PropTypes.string
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -105,6 +127,9 @@ export function mapDispatchToProps(dispatch) {
     onSaveForm: (id) =>{
       dispatch(saveProject(id));
     },
+    onAddUser: (pid) =>{
+      dispatch(addUser(pid));
+    },
   };
 }
 
@@ -112,6 +137,7 @@ const mapStateToProps = createStructuredSelector({
   name: makeSelectName(),
   description: makeSelectDescription(),
   project: makeSelectProject(),
+  user: makeSelectUser(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -19,9 +19,16 @@ const makeSelectProject = () => createSelector(
   selectEditPage,
   (editPageState) => editPageState.get('project')
 );
+
+const makeSelectUser = () => createSelector(
+  selectEditPage,
+  (editPageState) => editPageState.get('user')
+);
+
 export {
   selectEditPage,
   makeSelectName,
   makeSelectDescription,
-  makeSelectProject
+  makeSelectProject,
+  makeSelectUser
 };

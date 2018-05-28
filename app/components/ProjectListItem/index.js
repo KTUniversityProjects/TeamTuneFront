@@ -58,7 +58,6 @@ ProjectListItem.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     onEditClick: (itemID) => {
-      console.log(dispatch(projectEditRedirect(itemID)));
        dispatch(projectEditRedirect(itemID));
     },
   };

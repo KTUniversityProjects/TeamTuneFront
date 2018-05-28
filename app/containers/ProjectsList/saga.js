@@ -14,7 +14,6 @@ import { push } from 'react-router-redux';
 const URL = HOST + `1338`;
 
 export function* getProjects() {
-  console.log("getprojects load saga");
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
@@ -59,6 +58,7 @@ export function* deleteProjectSaga(action) {
     const response = yield call(request, requestURL, "DELETE", requestData);
     if (response.code == 0) {
       yield getProjects();
+      yield put(push('/'));
     }
   } catch (err) {
     console.log(err)

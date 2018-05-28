@@ -7,8 +7,8 @@ import { push } from 'react-router-redux';
 import request from 'utils/request';
 import {loadProject} from "./actions";
 import {SESSIONID, USERID, HOST, TRANSLATIONS,REQUEST_RESPONSES} from "../App/constants";
-import {GET_PROJECT, SAVE_PROJECT} from "./constants";
-import {makeSelectDescription, makeSelectName} from './selectors';
+import {GET_PROJECT, SAVE_PROJECT, ADD_USER} from "./constants";
+import {makeSelectDescription, makeSelectName, makeSelectUser} from './selectors';
 import {loadProjects} from "../ProjectsList/actions";
 
 export function* getProject(action) {
@@ -27,9 +27,9 @@ export function* getProject(action) {
   };
   try {
     // Call our request helper (see 'utils/request')
-    const response = yield call(request, requestURL, "POST", requestData);
+    const response = yield call(request, requestURL, "PATCH", requestData);
     if (response.code == 0) {
-      yield put(loadProject(response.data));
+      
     }
   } catch (err) {
     console.log(err)
@@ -67,7 +67,6 @@ export function* saveProjectSaga(action) {
 }
 
 export function* getProjects() {
-  console.log("getprojects load saga");
   const requestURL = HOST+`1338`;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
@@ -89,6 +88,36 @@ export function* getProjects() {
   return null;
 }
 
+export function* addUserSaga() {
+  const requestURL = HOST+`1338`;
+  const sessionID = sessionStorage.getItem(SESSIONID);
+  const userID = sessionStorage.getItem(USERID);
+  const email = yield select(makeSelectUser());
+  const requestData = {
+    session: {
+      id: sessionID,
+      user: userID,
+    },
+    project:{
+      users:[
+      email
+      ]
+    }
+
+  };
+  try {
+    // Call our request helper (see 'utils/request')
+    const response = yield call(request, requestURL, "POST", requestData);
+    console.log(response);
+    if (response.code == 0) {
+          
+    }
+  } catch (err) {
+      console.log(err)
+  }
+  return null;
+}
+
 //Watcheris
 export default function* checkLoginState() {
   const sessionID = sessionStorage.getItem(SESSIONID);
@@ -97,5 +126,6 @@ export default function* checkLoginState() {
        yield put(push('/'));
   }
   yield takeLatest(GET_PROJECT, getProject);
-  yield takeLatest(SAVE_PROJECT, saveProjectSaga)
+  yield takeLatest(SAVE_PROJECT, saveProjectSaga);
+  yield takeLatest(ADD_USER, addUserSaga);
 }

@@ -22,13 +22,12 @@ const initialState = fromJS({
   name: '',
   description: '',
   project: false,
+  email:'',
 });
 
 function editPageReducer(state = initialState, action) {
   switch (action.type) {
-
     case LOAD_PROJECT:
-    console.log(action.project);
       return state
         .set('project', action.project)
         .set('name', action.project.name)

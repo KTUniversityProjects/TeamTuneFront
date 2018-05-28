@@ -14,3 +14,7 @@ export const CHANGE_DESCRIPTION = 'boilerplate/ProjectEditPage/CHANGE_DESCRIPTIO
 export const GET_PROJECT = 'boilerplate/ProjectEditPage/GET_PROJECT';
 export const LOAD_PROJECT = 'boilerplate/ProjectEditPage/LOAD_PROJECT';
 export const SAVE_PROJECT = 'boilerplate/ProjectEditPage/SAVE_PROJECT';
+export const REQUEST_ERROR = 'boilerplate/ProjectEditPage/REQUEST_ERROR';
+export const SAVE_SUCCESS  = 'boilerplate/ProjectEditPage/SAVE_SUCCESS';
+export const ADD_USER = 'boilerplate/ProjectEditPage/ADD_USER';
+export const CHANGE_USER = 'boilerplate/ProjectEditPage/CHANGE_USER';

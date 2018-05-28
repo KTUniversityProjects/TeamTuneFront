@@ -17,7 +17,7 @@ export class Main extends React.PureComponent {
 
   render() {
    return (
-      <div className="projectMainBg" style={{"background-image" : "url(" + Background + ")"}}>
+      <div className="projectMainBg" style={{"backgroundImage" : "url(" + Background + ")"}}>
       <Menu width={ 'auto' } menuClassName={ "teamtune-menu" }>
       <ProjectsList/>
       </Menu>

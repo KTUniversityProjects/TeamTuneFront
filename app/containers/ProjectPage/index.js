@@ -13,19 +13,17 @@ import injectSaga from 'utils/injectSaga';
 
 import saga from './saga';
 
-class ProjectPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  componentWillMount() {
+class ProjectPage extends React.PureComponent {
 
+  componentWillMount() {
     const params = new URLSearchParams(this.props.location.search);
     const ID = params.get('id');
-
     this.setState({projectID: ID});
   }
 
   componentWillReceiveProps(nextProps) {
     const params = new URLSearchParams(nextProps.location.search);
     const ID = params.get('id');
-
     this.setState({projectID: ID});
   }
 
