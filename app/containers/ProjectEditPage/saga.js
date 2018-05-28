@@ -27,9 +27,9 @@ export function* getProject(action) {
   };
   try {
     // Call our request helper (see 'utils/request')
-    const response = yield call(request, requestURL, "PATCH", requestData);
+    const response = yield call(request, requestURL, "POST", requestData);
     if (response.code == 0) {
-
+        yield put(loadProject(response.data));
     }
   } catch (err) {
     console.log(err)
@@ -107,8 +107,7 @@ export function* addUserSaga() {
   };
   try {
     // Call our request helper (see 'utils/request')
-    const response = yield call(request, requestURL, "POST", requestData);
-    console.log(response);
+    const response = yield call(request, requestURL, "PATCH", requestData);
     if (response.code == 0) {
 
     }

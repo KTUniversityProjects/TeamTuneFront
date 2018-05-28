@@ -30,7 +30,7 @@ import CenteredSection from '../SignUpPage/CenteredSection';
 class ProjectEditPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   
   componentDidMount() {
-    console.log("COMPONENT DID MOUNT ACTIVATED");
+    console.log(this.state.projectID);
     this.props.onPageLoad(this.state.projectID);
   }
 
