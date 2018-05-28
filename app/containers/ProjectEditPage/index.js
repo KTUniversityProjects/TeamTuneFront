@@ -16,7 +16,7 @@ import injectSaga from 'utils/injectSaga';
 import {createStructuredSelector} from 'reselect';
 import { makeSelectName, makeSelectDescription, makeSelectProject, makeSelectUser } from './selectors';
 
-import {getProject, saveProject, changeName, changeDescription, onChangeUser, addUser} from "./actions";
+import {getProject, saveProject, changeName, changeDescription, changeUser, addUser} from "./actions";
 
 import {slide as Menu} from 'react-burger-menu';
 import ProjectsList from 'containers/ProjectsList';
@@ -28,7 +28,7 @@ import Input from 'components/Input';
 import CenteredSection from '../SignUpPage/CenteredSection';
 
 class ProjectEditPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  
+
   componentDidMount() {
     console.log(this.state.projectID);
     this.props.onPageLoad(this.state.projectID);
@@ -121,6 +121,7 @@ export function mapDispatchToProps(dispatch) {
   return {
     onChangeName: (evt) => dispatch(changeName(evt.target.value)),
     onChangeDescription: (evt) => dispatch(changeDescription(evt.target.value)),
+    onChangeUser: (evt) => dispatch(changeUser(evt.target.value)),
     onPageLoad: (id) => {
       dispatch(getProject(id));
     },

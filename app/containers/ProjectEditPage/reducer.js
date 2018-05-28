@@ -14,7 +14,8 @@ import { fromJS } from 'immutable';
 import {
   CHANGE_NAME,
   CHANGE_DESCRIPTION,
-  LOAD_PROJECT
+  LOAD_PROJECT,
+  CHANGE_USER
 } from './constants';
 
 // The initial state of the App
@@ -35,6 +36,9 @@ function editPageReducer(state = initialState, action) {
 
     case CHANGE_NAME:
       return state.set('name', action.name);
+
+    case CHANGE_USER:
+      return state.set('user', action.name);
 
     case CHANGE_DESCRIPTION:
       return state.set('description', action.name);

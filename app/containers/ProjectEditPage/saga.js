@@ -2,11 +2,11 @@
  * Gets the repositories of the user from Github
  */
 
-import { take, put, takeLatest, call, select } from 'redux-saga/effects';
+import { put, takeLatest, call, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import request from 'utils/request';
 import {loadProject} from "./actions";
-import {SESSIONID, USERID, HOST, TRANSLATIONS,REQUEST_RESPONSES} from "../App/constants";
+import {SESSIONID, USERID, HOST} from "../App/constants";
 import {GET_PROJECT, SAVE_PROJECT, ADD_USER} from "./constants";
 import {makeSelectDescription, makeSelectName, makeSelectUser} from './selectors';
 import {loadProjects} from "../ProjectsList/actions";
@@ -88,17 +88,20 @@ export function* getProjects() {
   return null;
 }
 
-export function* addUserSaga() {
+export function* addUserSaga(action) {
   const requestURL = HOST+`1338`;
   const sessionID = localStorage.getItem(SESSIONID);
   const userID = localStorage.getItem(USERID);
   const email = yield select(makeSelectUser());
+  console.log(email);
+  const pID = action.id;
   const requestData = {
     session: {
       id: sessionID,
       user: userID,
     },
     project:{
+      id:pID,
       users:[
       email
       ]
