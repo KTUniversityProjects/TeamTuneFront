@@ -16,7 +16,7 @@ import injectSaga from 'utils/injectSaga';
 import {createStructuredSelector} from 'reselect';
 import { makeSelectName, makeSelectDescription, makeSelectProject } from './selectors';
 
-import {getProject, changeName, changeDescription} from "./actions";
+import {getProject, saveProject, changeName, changeDescription} from "./actions";
 
 import {slide as Menu} from 'react-burger-menu';
 import ProjectsList from 'containers/ProjectsList';
@@ -73,7 +73,7 @@ class ProjectEditPage extends React.PureComponent { // eslint-disable-line react
                     id="submit"
                     type="submit"
                     children="Save"
-                    onClick={this.props.onSaveForm}
+                    onClick={this.props.onSaveForm.bind(null, project.id)}
                   />
               </Form>
               </CenteredSection>
@@ -101,6 +101,9 @@ export function mapDispatchToProps(dispatch) {
     onChangeDescription: (evt) => dispatch(changeDescription(evt.target.value)),
     onPageLoad: (id) => {
       dispatch(getProject(id));
+    },
+    onSaveForm: (id) =>{
+      dispatch(saveProject(id));
     },
   };
 }

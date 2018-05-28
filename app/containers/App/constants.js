@@ -33,5 +33,5 @@ export const REQUEST_RESPONSES = {
 };
 
 export const TRANSLATIONS = {
-  delete_are_u_sure: "Are u sure?"
+  delete_are_u_sure: "Are you sure you want to delete this?"
 };

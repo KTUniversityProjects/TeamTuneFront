@@ -5,7 +5,7 @@
 import {call, put, takeLatest, select} from 'redux-saga/effects';
 
 import request from 'utils/request';
-import {SESSIONID, USERID, HOST, TRANSLATIONS,REQUEST_RESPONSES} from "../App/constants";
+import {SESSIONID, USERID, HOST, TRANSLATIONS, REQUEST_RESPONSES} from "../App/constants";
 import {LOGOUT_REQUEST, DELETE_PROJECT_REQUEST, ADD_PROJECT_REQUEST, LOAD_PROJECTS_REQUEST} from "./constants";
 import {loadProjects, createSuccess, requestError} from "./actions";
 import {makeSelectName, makeSelectDescription} from "./selectors";
@@ -14,6 +14,7 @@ import { push } from 'react-router-redux';
 const URL = HOST + `1338`;
 
 export function* getProjects() {
+  console.log("getprojects load saga");
   const requestURL = URL;
   const sessionID = sessionStorage.getItem(SESSIONID);
   const userID = sessionStorage.getItem(USERID);
@@ -27,13 +28,11 @@ export function* getProjects() {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "POST", requestData);
     if (response.code == 0) {
-
       yield put(loadProjects(response.data));
     }
   } catch (err) {
-    console.log(err)
+      console.log(err)
   }
-
   return null;
 }
 

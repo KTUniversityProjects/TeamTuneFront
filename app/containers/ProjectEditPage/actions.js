@@ -2,7 +2,8 @@ import {
   CHANGE_NAME,
   CHANGE_DESCRIPTION,
   GET_PROJECT,
-  LOAD_PROJECT
+  LOAD_PROJECT,
+  SAVE_PROJECT
 } from './constants';
 
  export function changeName(name) {
@@ -32,4 +33,11 @@ export function loadProject(project) {
     project: project
   };
 }
+
+export function saveProject(id) {
+   return {
+     type: SAVE_PROJECT,
+     id: id,
+   };
+ }
 
