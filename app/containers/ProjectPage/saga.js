@@ -12,7 +12,7 @@ import {SESSIONID} from "../App/constants";
  * Root saga manages watcher lifecycle
  */
 export default function* checkLoginState() {
-  const sessionID = sessionStorage.getItem(SESSIONID);
+  const sessionID = localStorage.getItem(SESSIONID);
   if(sessionID == null)
   {
        yield put(push('/'));

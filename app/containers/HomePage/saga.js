@@ -28,8 +28,8 @@ export function* loginRequest() {
 
     if(response.code == 0)
     {
-      sessionStorage.setItem(SESSIONID, response.data.id);
-      sessionStorage.setItem(USERID, response.data.user);
+      localStorage.setItem(SESSIONID, response.data.id);
+      localStorage.setItem(USERID, response.data.user);
       yield put(push('/main'));
     }
     else
@@ -51,7 +51,7 @@ export function* signUpRedirectSaga(){
  */
 export default function* checkLoginState() {
 
-  const sessionID = sessionStorage.getItem(SESSIONID);
+  const sessionID = localStorage.getItem(SESSIONID);
   if(sessionID != null)
   {
       yield put(push('/main'));

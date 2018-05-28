@@ -13,8 +13,8 @@ import {loadProjects} from "../ProjectsList/actions";
 
 export function* getProject(action) {
   const requestURL = HOST+`1338`;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const pID = action.id;
   const requestData = {
     session: {
@@ -29,7 +29,7 @@ export function* getProject(action) {
     // Call our request helper (see 'utils/request')
     const response = yield call(request, requestURL, "PATCH", requestData);
     if (response.code == 0) {
-      
+
     }
   } catch (err) {
     console.log(err)
@@ -40,8 +40,8 @@ export function* getProject(action) {
 
 export function* saveProjectSaga(action) {
   const requestURL = HOST+`1338`;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const pID = action.id;
   const requestData = {
     session: {
@@ -68,8 +68,8 @@ export function* saveProjectSaga(action) {
 
 export function* getProjects() {
   const requestURL = HOST+`1338`;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const requestData = {
     session: {
       id: sessionID,
@@ -90,8 +90,8 @@ export function* getProjects() {
 
 export function* addUserSaga() {
   const requestURL = HOST+`1338`;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const email = yield select(makeSelectUser());
   const requestData = {
     session: {
@@ -110,7 +110,7 @@ export function* addUserSaga() {
     const response = yield call(request, requestURL, "POST", requestData);
     console.log(response);
     if (response.code == 0) {
-          
+
     }
   } catch (err) {
       console.log(err)
@@ -120,7 +120,7 @@ export function* addUserSaga() {
 
 //Watcheris
 export default function* checkLoginState() {
-  const sessionID = sessionStorage.getItem(SESSIONID);
+  const sessionID = localStorage.getItem(SESSIONID);
   if(sessionID == null)
   {
        yield put(push('/'));

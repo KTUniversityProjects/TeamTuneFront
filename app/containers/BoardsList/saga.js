@@ -22,8 +22,8 @@ export function* getBoards(action) {
   console.log("GetboARDS");
   console.log(action);
   const requestURL = URL;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const projectID = action.projectID;
   const requestData = {
     session: {
@@ -50,8 +50,8 @@ export function* getBoards(action) {
 
 export function* addBoardSaga(action) {
   const requestURL = URL;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const projectID = action.projectID;
   const requestData = {
     session: {
@@ -83,8 +83,8 @@ export function* deleteBoardSaga(action) {
     return;
   }
   const requestURL = URL;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const boardID= action.boardID;
   const requestData = {
     session: {
@@ -109,8 +109,8 @@ export function* deleteBoardSaga(action) {
 
 export function* addTaskSaga(action) {
   const requestURL = URL2;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const boardID = action.boardID;
   const requestData = {
     session: {
@@ -140,8 +140,8 @@ export function* deleteTaskSaga(action) {
     return;
   }
   const requestURL = URL2;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const taskID= action.taskID;
   const requestData = {
     session: {
@@ -166,8 +166,8 @@ export function* deleteTaskSaga(action) {
 
 export function* editBoardSaga(action){
   const requestURL = URL;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const boardID = action.id;
   const boardName = action.data.message;
   const requestData = {
@@ -194,8 +194,8 @@ export function* editBoardSaga(action){
 
 export function* editTaskSaga(action){
   const requestURL = URL2;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const taskID = action.id;
   const taskName = action.data.message;
   const requestData = {

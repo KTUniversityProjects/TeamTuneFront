@@ -15,8 +15,8 @@ const URL = HOST + `1338`;
 
 export function* getProjects() {
   const requestURL = URL;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const requestData = {
     session: {
       id: sessionID,
@@ -41,8 +41,8 @@ export function* deleteProjectSaga(action) {
     return;
   }
   const requestURL = URL;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const pID = action.projectID;
   const requestData = {
     session: {
@@ -69,8 +69,8 @@ export function* deleteProjectSaga(action) {
 
 export function* addProjectSaga(action) {
   const requestURL = URL;
-  const sessionID = sessionStorage.getItem(SESSIONID);
-  const userID = sessionStorage.getItem(USERID);
+  const sessionID = localStorage.getItem(SESSIONID);
+  const userID = localStorage.getItem(USERID);
   const requestData = {
     session: {
       id: sessionID,
@@ -101,8 +101,8 @@ export function* addProjectSaga(action) {
 }
 
 export function* logoutSaga() {
-   sessionStorage.removeItem(SESSIONID);
-   sessionStorage.removeItem(USERID);
+   localStorage.removeItem(SESSIONID);
+   localStorage.removeItem(USERID);
    yield put(push('/'));
 }
 
